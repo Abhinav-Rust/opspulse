@@ -1,35 +1,35 @@
 import React from 'react';
-import { Activity, RefreshCw, Layers, BookOpen } from 'lucide-react';
+import { Activity, Layers, BookOpen, ArrowRight } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   onOpenAwsModal: () => void;
-  onOpenWorkspaceModal: () => void;
   onOpenDocsModal: () => void;
+  onOpenTrialModal: () => void;
+  onOpenSignInModal: () => void;
   onScrollToSection: (sectionId: string) => void;
-  isSimulating: boolean;
-  onToggleSimulate: () => void;
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenAwsModal,
-  onOpenWorkspaceModal,
   onOpenDocsModal,
+  onOpenTrialModal,
+  onOpenSignInModal,
   onScrollToSection,
-  isSimulating,
-  onToggleSimulate,
   theme,
   onToggleTheme,
 }) => {
-
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md transition-colors">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3 lg:px-8">
         {/* Brand & Desktop Navigation */}
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2.5 sm:gap-3 cursor-pointer" onClick={() => onScrollToSection('hero')}>
+          <div
+            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer"
+            onClick={() => onScrollToSection('hero')}
+          >
             <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
               <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-white animate-pulse" />
             </div>
@@ -49,38 +49,44 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+          <nav className="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
             <button
+              type="button"
               onClick={() => onScrollToSection('console')}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
               Live Console
             </button>
             <button
+              type="button"
               onClick={() => onScrollToSection('mesh')}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
               Causal Mesh
             </button>
             <button
+              type="button"
               onClick={onOpenAwsModal}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
               Cloud Architecture
             </button>
             <button
+              type="button"
               onClick={() => onScrollToSection('finops')}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
               FinOps ROI
             </button>
             <button
+              type="button"
               onClick={() => onScrollToSection('pricing')}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
               Pricing
             </button>
             <button
+              type="button"
               onClick={onOpenDocsModal}
               className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition flex items-center gap-1"
             >
@@ -90,65 +96,42 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
         </div>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
-          {/* Theme Toggle (Dark / Light) */}
-          <ThemeToggle theme={theme} onToggleTheme={onToggleTheme} />
-
-          {/* Live stream toggle */}
-          <button
-            onClick={onToggleSimulate}
-            type="button"
-            className={`flex items-center gap-1.5 rounded-xl border p-2 sm:px-3 sm:py-1.5 text-xs font-medium transition active:scale-95 ${
-              isSimulating
-                ? 'border-cyan-300 dark:border-cyan-500/40 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-100 dark:hover:bg-cyan-900/40'
-                : 'border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-            }`}
-            title="Toggle Live Telemetry Simulation"
-            aria-label="Toggle Live Telemetry Simulation"
-          >
-            <RefreshCw className={`h-3.5 w-3.5 ${isSimulating ? 'animate-spin text-cyan-600 dark:text-cyan-400' : ''}`} />
-            <span className="hidden sm:inline">
-              {isSimulating ? 'Live Stream' : 'Paused'}
-            </span>
-          </button>
-
-          {/* Architecture Button */}
+        {/* Right Actions: Clean SaaS Header */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Cloud Specs (Secondary) */}
           <button
             onClick={onOpenAwsModal}
             type="button"
-            className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 border border-cyan-500/40 px-2.5 py-1.5 sm:px-3 text-xs font-semibold text-white shadow-sm transition active:scale-95"
+            className="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition active:scale-95"
             title="View AWS Cloud Architecture & Infrastructure Details"
           >
-            <Layers className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Cloud Specs</span>
-            <span className="sm:hidden">Specs</span>
+            <Layers className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
+            <span>Cloud Specs</span>
           </button>
 
-          {/* Workspace Settings / Profile Button ("OP") */}
+          {/* Sign In Button */}
           <button
-            onClick={onOpenWorkspaceModal}
+            onClick={onOpenSignInModal}
             type="button"
-            aria-label="Workspace & Infrastructure Settings"
-            title="Click to view Workspace & Environment Details"
-            className="group flex items-center gap-2 pl-1.5 sm:pl-2.5 border-l border-slate-200 dark:border-slate-800 rounded-lg py-1 hover:bg-slate-100 dark:hover:bg-slate-900/60 transition active:scale-95 cursor-pointer"
+            className="px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl transition"
           >
-            <div className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 via-indigo-600 to-purple-600 text-xs font-bold text-white shadow group-hover:ring-2 group-hover:ring-cyan-400 group-hover:ring-offset-2 dark:group-hover:ring-offset-slate-950 transition">
-              OP
-              <span className="absolute bottom-0 right-0 flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full border border-white dark:border-slate-950 bg-emerald-500"></span>
-              </span>
-            </div>
-            <div className="hidden lg:block text-left pr-1">
-              <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition">
-                Enterprise SRE
-              </p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-                ws-prod-ap-south
-              </p>
-            </div>
+            Sign In
           </button>
+
+          {/* Primary CTA: Start Free Trial */}
+          <button
+            onClick={onOpenTrialModal}
+            type="button"
+            className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 px-3 sm:px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition active:scale-95"
+          >
+            <span>Start Free Trial</span>
+            <ArrowRight className="h-3 w-3 hidden sm:inline" />
+          </button>
+
+          {/* Theme Toggle (Dark / Light) cleanly positioned at right edge */}
+          <div className="pl-1 border-l border-slate-200 dark:border-slate-800">
+            <ThemeToggle theme={theme} onToggleTheme={onToggleTheme} />
+          </div>
         </div>
       </div>
     </header>

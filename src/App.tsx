@@ -5,12 +5,13 @@ import { NodeTopology } from './components/NodeTopology';
 import { IncidentFeed } from './components/IncidentFeed';
 import { AiDiagnosticDrawer } from './components/AiDiagnosticDrawer';
 import { AwsArchitectureModal } from './components/AwsArchitectureModal';
-import { WorkspaceSettingsModal } from './components/WorkspaceSettingsModal';
 import { AutonomousTerminalModal } from './components/AutonomousTerminalModal';
 import { ServiceDependencyMesh } from './components/ServiceDependencyMesh';
 import { FinOpsRoiSection } from './components/FinOpsRoiSection';
 import { PricingSection } from './components/PricingSection';
 import { ApiDocsModal } from './components/ApiDocsModal';
+import { SignInModal } from './components/SignInModal';
+import { TrialSignupModal } from './components/TrialSignupModal';
 import { INITIAL_METRICS, INITIAL_NODES, INITIAL_INCIDENTS } from './data/mockData';
 import type { TelemetryMetric, AwsServiceNode, IncidentAlert } from './types';
 import {
@@ -22,6 +23,7 @@ import {
   BookOpen,
   CheckCircle2,
   Activity,
+  RefreshCw,
 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -33,9 +35,10 @@ export const App: React.FC = () => {
 
   // Modals
   const [isAwsModalOpen, setIsAwsModalOpen] = useState<boolean>(false);
-  const [isWorkspaceModalOpen, setIsWorkspaceModalOpen] = useState<boolean>(false);
   const [isDocsModalOpen, setIsDocsModalOpen] = useState<boolean>(false);
   const [isTerminalModalOpen, setIsTerminalModalOpen] = useState<boolean>(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState<boolean>(false);
+  const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
 
   const [isSimulating, setIsSimulating] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'nodes' | 'incidents'>('overview');
@@ -125,11 +128,10 @@ export const App: React.FC = () => {
       {/* Top Navigation Bar */}
       <Header
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
-        onOpenWorkspaceModal={() => setIsWorkspaceModalOpen(true)}
         onOpenDocsModal={() => setIsDocsModalOpen(true)}
+        onOpenTrialModal={() => setIsTrialModalOpen(true)}
+        onOpenSignInModal={() => setIsSignInModalOpen(true)}
         onScrollToSection={handleScrollToSection}
-        isSimulating={isSimulating}
-        onToggleSimulate={() => setIsSimulating(!isSimulating)}
         theme={theme}
         onToggleTheme={handleToggleTheme}
       />
@@ -222,43 +224,60 @@ export const App: React.FC = () => {
               </p>
             </div>
 
-            {/* Quick tab controls */}
-            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start sm:self-auto text-xs font-semibold overflow-x-auto max-w-full">
+            {/* Quick tab controls & Simulation Stream Toggle */}
+            <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+              <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold overflow-x-auto">
+                <button
+                  onClick={() => setActiveTab('overview')}
+                  type="button"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
+                    activeTab === 'overview'
+                      ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  <LayoutDashboard className="h-3.5 w-3.5" />
+                  <span>Overview</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('nodes')}
+                  type="button"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
+                    activeTab === 'nodes'
+                      ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  <Server className="h-3.5 w-3.5" />
+                  <span>AWS Nodes</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('incidents')}
+                  type="button"
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
+                    activeTab === 'incidents'
+                      ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  <span>AI Anomaly Stream</span>
+                </button>
+              </div>
+
+              {/* Simulation Stream Toggle */}
               <button
-                onClick={() => setActiveTab('overview')}
+                onClick={() => setIsSimulating(!isSimulating)}
                 type="button"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
-                  activeTab === 'overview'
-                    ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                className={`flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-medium transition active:scale-95 ${
+                  isSimulating
+                    ? 'border-cyan-300 dark:border-cyan-500/40 bg-cyan-50 dark:bg-cyan-950/40 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-100 dark:hover:bg-cyan-900/40'
+                    : 'border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
+                title="Toggle Real-Time Telemetry Simulation"
               >
-                <LayoutDashboard className="h-3.5 w-3.5" />
-                <span>Overview</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('nodes')}
-                type="button"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
-                  activeTab === 'nodes'
-                    ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Server className="h-3.5 w-3.5" />
-                <span>AWS Nodes</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('incidents')}
-                type="button"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
-                  activeTab === 'incidents'
-                    ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>AI Anomaly Stream</span>
+                <RefreshCw className={`h-3.5 w-3.5 ${isSimulating ? 'animate-spin text-cyan-600 dark:text-cyan-400' : ''}`} />
+                <span>{isSimulating ? 'Live Stream' : 'Paused'}</span>
               </button>
             </div>
           </div>
@@ -338,17 +357,29 @@ export const App: React.FC = () => {
         onClose={() => setIsAwsModalOpen(false)}
       />
 
-      {/* Workspace & Infrastructure Settings Modal */}
-      <WorkspaceSettingsModal
-        isOpen={isWorkspaceModalOpen}
-        onClose={() => setIsWorkspaceModalOpen(false)}
-        onOpenAwsModal={() => setIsAwsModalOpen(true)}
-      />
-
       {/* Developer SDK & API Documentation Modal */}
       <ApiDocsModal
         isOpen={isDocsModalOpen}
         onClose={() => setIsDocsModalOpen(false)}
+      />
+
+      {/* Sign In Modal */}
+      <SignInModal
+        isOpen={isSignInModalOpen}
+        onClose={() => setIsSignInModalOpen(false)}
+        onOpenTrial={() => {
+          setIsSignInModalOpen(false);
+          setIsTrialModalOpen(true);
+        }}
+      />
+
+      {/* Trial Signup Modal */}
+      <TrialSignupModal
+        isOpen={isTrialModalOpen}
+        onClose={() => setIsTrialModalOpen(false)}
+        planName="Startup Pro"
+        onOpenDocs={() => setIsDocsModalOpen(true)}
+        onScrollToConsole={() => handleScrollToSection('console')}
       />
 
       {/* Comprehensive Enterprise Footer */}
@@ -426,8 +457,8 @@ export const App: React.FC = () => {
                 </a>
               </li>
               <li>
-                <button onClick={() => setIsWorkspaceModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  Workspace Settings
+                <button onClick={() => setIsAwsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
+                  AWS Well-Architected Review
                 </button>
               </li>
               <li>
