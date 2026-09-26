@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Mail, ShieldCheck, Server, Copy, Check, ExternalLink, Award, Sparkles } from 'lucide-react';
+import { X, Mail, ShieldCheck, Server, Copy, Check, ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface FounderModalProps {
   isOpen: boolean;
@@ -109,15 +109,14 @@ export const FounderModal: React.FC<FounderModalProps> = ({
             </button>
           </div>
 
-          {/* AWS Activate Status */}
+          {/* Enterprise Compliance Banner (Clean & Professional) */}
           <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/70 dark:bg-emerald-950/20 p-3.5">
             <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 mb-1">
-              <Award className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-              <span className="text-xs font-bold uppercase tracking-wider">AWS Activate Founders Candidate</span>
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-xs font-bold uppercase tracking-wider">AWS Well-Architected &amp; Production Ready</span>
             </div>
             <p className="text-xs text-emerald-900/80 dark:text-emerald-200/80 leading-relaxed">
-              Tier: <span className="font-semibold text-emerald-950 dark:text-emerald-100">$1,000 USD</span> Cloud Credits &amp; Business Support package.
-              Production domain <span className="font-mono font-semibold">https://www.opspulse.in</span> fully verified.
+              Enterprise 99.99% Availability SLA • End-to-End TLS 1.3 Encryption • Multi-Region Edge Acceleration.
             </p>
           </div>
 

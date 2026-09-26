@@ -28,10 +28,10 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
             </div>
             <div>
               <h3 id="aws-modal-title" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                AWS Cloud Architecture &amp; Credit Allocation
+                AWS Cloud Architecture &amp; Resource Allocation
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                OpsPulse Production Specification • AWS Activate Founder Tier ($1,000 USD)
+                OpsPulse Production Specification • Enterprise Cloud Infrastructure Blueprint
               </p>
             </div>
           </div>
@@ -87,19 +87,19 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
             </div>
           </div>
 
-          {/* Budget Allocation Table ($1000 Credits) */}
+          {/* Infrastructure Budget Table */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-1.5">
               <DollarSign className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              AWS Activate Founder Tier Allocation Blueprint ($1,000 Budget)
+              Monthly Cloud Infrastructure Capacity &amp; Cost Allocation Model
             </h4>
             <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
               <table className="w-full text-left text-xs min-w-[500px]">
                 <thead className="border-b border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/50 font-bold text-slate-700 dark:text-slate-300">
                   <tr>
                     <th className="p-3">AWS Service Component</th>
-                    <th className="p-3">Target Workload</th>
-                    <th className="p-3 text-right">Allocated Credits</th>
+                    <th className="p-3">Production Workload</th>
+                    <th className="p-3 text-right">Target Monthly Budget</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-mono text-slate-700 dark:text-slate-300">
@@ -140,9 +140,9 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
                   </tr>
                   <tr className="bg-slate-100 dark:bg-slate-900/60 font-sans font-bold">
                     <td className="p-3 text-slate-900 dark:text-white" colSpan={2}>
-                      Total Activate Allocation Plan
+                      Total Monthly Target Cloud Budget
                     </td>
-                    <td className="p-3 text-right font-mono text-emerald-600 dark:text-emerald-300 font-extrabold text-sm">$1,000.00</td>
+                    <td className="p-3 text-right font-mono text-emerald-600 dark:text-emerald-300 font-extrabold text-sm">$1,000.00 / mo</td>
                   </tr>
                 </tbody>
               </table>
@@ -153,9 +153,9 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
           <div className="rounded-xl border border-emerald-300 dark:border-emerald-900/40 bg-emerald-50 dark:bg-emerald-950/20 p-3.5 flex items-center gap-3">
             <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
             <div className="text-xs">
-              <span className="font-bold text-emerald-800 dark:text-emerald-300">AWS Ecosystem Compliance Verified: </span>
+              <span className="font-bold text-emerald-800 dark:text-emerald-300">AWS Well-Architected Framework: </span>
               <span className="text-slate-700 dark:text-slate-300">
-                Meets all architectural prerequisites for the AWS Activate Founders Tier review guidelines.
+                Designed across Reliability, Performance Efficiency, Security, and Cost Optimization pillars.
               </span>
             </div>
           </div>
