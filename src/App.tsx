@@ -5,6 +5,7 @@ import { NodeTopology } from './components/NodeTopology';
 import { IncidentFeed } from './components/IncidentFeed';
 import { AiDiagnosticDrawer } from './components/AiDiagnosticDrawer';
 import { AwsArchitectureModal } from './components/AwsArchitectureModal';
+import { FounderModal } from './components/FounderModal';
 import { INITIAL_METRICS, INITIAL_NODES, INITIAL_INCIDENTS } from './data/mockData';
 import type { TelemetryMetric, AwsServiceNode, IncidentAlert } from './types';
 import { LayoutDashboard, Server, Sparkles } from 'lucide-react';
@@ -15,10 +16,36 @@ export const App: React.FC = () => {
   const [incidents, setIncidents] = useState<IncidentAlert[]>(INITIAL_INCIDENTS);
   const [selectedIncident, setSelectedIncident] = useState<IncidentAlert | null>(null);
   const [isAwsModalOpen, setIsAwsModalOpen] = useState<boolean>(false);
+  const [isFounderModalOpen, setIsFounderModalOpen] = useState<boolean>(false);
   const [isSimulating, setIsSimulating] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'nodes' | 'incidents'>('overview');
 
-  // Simulation loop for realistic real-time telemetry
+  // Theme Management (Light & Dark)
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('opspulse-theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
+    }
+    localStorage.setItem('opspulse-theme', theme);
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  // Real-time telemetry simulation loop
   useEffect(() => {
     if (!isSimulating) return;
 
@@ -62,34 +89,38 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
       {/* Top Navigation */}
       <Header
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
+        onOpenFounderModal={() => setIsFounderModalOpen(true)}
         isSimulating={isSimulating}
         onToggleSimulate={() => setIsSimulating(!isSimulating)}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Hero Sub-Header */}
-      <section className="border-b border-slate-800/80 bg-slate-900/30 py-6 px-4 sm:px-6 lg:px-8">
+      <section className="border-b border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/30 py-6 px-4 sm:px-6 lg:px-8 transition-colors">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
               Cloud Observability &amp; Incident Intelligence
             </h1>
-            <p className="mt-1 text-sm text-slate-400">
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Autonomous telemetry ingestion, predictive anomaly classification, and automated AWS healing.
             </p>
           </div>
 
           {/* Quick tab controls */}
-          <div className="flex items-center gap-2 bg-slate-900 p-1 rounded-xl border border-slate-800 self-start md:self-auto text-xs font-medium">
+          <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start md:self-auto text-xs font-semibold overflow-x-auto max-w-full">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition ${
+              type="button"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
                 activeTab === 'overview'
-                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
@@ -97,10 +128,11 @@ export const App: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('nodes')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition ${
+              type="button"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
                 activeTab === 'nodes'
-                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Server className="h-3.5 w-3.5" />
@@ -108,10 +140,11 @@ export const App: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('incidents')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition ${
+              type="button"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition active:scale-95 shrink-0 ${
                 activeTab === 'incidents'
-                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Sparkles className="h-3.5 w-3.5" />
@@ -122,7 +155,7 @@ export const App: React.FC = () => {
       </section>
 
       {/* Main Dashboard Body */}
-      <main className="mx-auto max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8 space-y-8 w-full">
+      <main className="mx-auto max-w-7xl flex-1 px-4 py-6 sm:py-8 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 w-full">
         {/* Metric Cards Grid */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {metrics.map((metric) => (
@@ -132,7 +165,7 @@ export const App: React.FC = () => {
 
         {/* Content Tabs */}
         {activeTab === 'overview' && (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <NodeTopology nodes={nodes} />
             <IncidentFeed
               incidents={incidents}
@@ -142,13 +175,13 @@ export const App: React.FC = () => {
         )}
 
         {activeTab === 'nodes' && (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <NodeTopology nodes={nodes} />
           </div>
         )}
 
         {activeTab === 'incidents' && (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <IncidentFeed
               incidents={incidents}
               onSelectIncident={(inc) => setSelectedIncident(inc)}
@@ -170,21 +203,37 @@ export const App: React.FC = () => {
         onClose={() => setIsAwsModalOpen(false)}
       />
 
+      {/* Founder & Startup Profile Modal (Triggered by "AS" Button) */}
+      <FounderModal
+        isOpen={isFounderModalOpen}
+        onClose={() => setIsFounderModalOpen(false)}
+        onOpenAwsModal={() => setIsAwsModalOpen(true)}
+      />
+
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 py-6 px-4 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 py-6 px-4 text-center text-xs text-slate-500 transition-colors">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>© 2026 OpsPulse Inc. • Registered at opspulse.in • Built for AWS Cloud Infrastructure</p>
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-4 text-slate-500 dark:text-slate-400">
             <button
               onClick={() => setIsAwsModalOpen(true)}
-              className="hover:text-cyan-400 transition"
+              type="button"
+              className="hover:text-cyan-600 dark:hover:text-cyan-400 transition"
             >
               AWS Cloud Architecture
             </button>
             <span>•</span>
+            <button
+              onClick={() => setIsFounderModalOpen(true)}
+              type="button"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-semibold"
+            >
+              Founder Profile
+            </button>
+            <span>•</span>
             <a
               href="mailto:founder@opspulse.in"
-              className="hover:text-cyan-400 transition"
+              className="hover:text-cyan-600 dark:hover:text-cyan-400 transition"
             >
               founder@opspulse.in
             </a>
