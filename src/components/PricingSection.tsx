@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { TrialSignupModal } from './TrialSignupModal';
 
-export const PricingSection: React.FC = () => {
+interface PricingSectionProps {
+  onOpenDocs: () => void;
+  onScrollToConsole: () => void;
+}
+
+export const PricingSection: React.FC<PricingSectionProps> = ({
+  onOpenDocs,
+  onScrollToConsole,
+}) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
+  const [modalPlan, setModalPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -57,6 +67,14 @@ export const PricingSection: React.FC = () => {
     },
   ];
 
+  const handlePlanClick = (planName: string) => {
+    if (planName === 'Developer Free') {
+      onOpenDocs();
+    } else {
+      setModalPlan(planName);
+    }
+  };
+
   return (
     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-5 sm:p-8 shadow-sm dark:shadow-xl backdrop-blur-sm transition-all">
       <div className="text-center max-w-2xl mx-auto mb-8">
@@ -67,7 +85,7 @@ export const PricingSection: React.FC = () => {
           Predictable Plans for Modern Cloud Teams
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Start for free, scale as your AWS cloud infrastructure expands. Zero lock-in.
+          Start free, evaluate in sandbox, and scale effortlessly on AWS. Zero payment friction.
         </p>
 
         {/* Annual / Monthly Toggle */}
@@ -144,6 +162,7 @@ export const PricingSection: React.FC = () => {
             <div className="mt-8 pt-4">
               <button
                 type="button"
+                onClick={() => handlePlanClick(plan.name)}
                 className={`w-full rounded-xl py-2.5 px-4 text-xs font-bold transition flex items-center justify-center gap-1.5 active:scale-95 shadow-sm ${
                   plan.highlighted
                     ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white'
@@ -157,6 +176,46 @@ export const PricingSection: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Enterprise Procurement & AWS Marketplace Banner */}
+      <div className="mt-8 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 dark:text-slate-400">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-400 shrink-0">
+            <ShieldCheck className="h-5 w-5" />
+          </div>
+          <div>
+            <div className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <span>Enterprise Procurement via AWS Marketplace</span>
+              <span className="text-[10px] bg-cyan-100 dark:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 px-2 py-0.5 rounded font-mono font-medium">
+                Private Beta
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              Draw down existing AWS EDP commitments with zero credit card friction. Invoiced directly on your AWS monthly bill.
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setModalPlan('Startup Pro')}
+          className="whitespace-nowrap px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-1.5 shadow-sm text-xs"
+        >
+          <Zap className="h-3.5 w-3.5 text-amber-500" />
+          <span>Request Private Beta</span>
+        </button>
+      </div>
+
+      {/* Active Modal */}
+      {modalPlan && (
+        <TrialSignupModal
+          isOpen={!!modalPlan}
+          onClose={() => setModalPlan(null)}
+          planName={modalPlan}
+          onOpenDocs={onOpenDocs}
+          onScrollToConsole={onScrollToConsole}
+        />
+      )}
     </div>
   );
 };

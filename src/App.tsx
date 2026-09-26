@@ -309,7 +309,10 @@ export const App: React.FC = () => {
 
         {/* Section 4: Transparent SaaS Pricing */}
         <section id="pricing">
-          <PricingSection />
+          <PricingSection
+            onOpenDocs={() => setIsDocsModalOpen(true)}
+            onScrollToConsole={() => handleScrollToSection('console')}
+          />
         </section>
       </main>
 
