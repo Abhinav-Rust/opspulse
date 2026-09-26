@@ -5,7 +5,7 @@ import { NodeTopology } from './components/NodeTopology';
 import { IncidentFeed } from './components/IncidentFeed';
 import { AiDiagnosticDrawer } from './components/AiDiagnosticDrawer';
 import { AwsArchitectureModal } from './components/AwsArchitectureModal';
-import { FounderModal } from './components/FounderModal';
+import { WorkspaceSettingsModal } from './components/WorkspaceSettingsModal';
 import { INITIAL_METRICS, INITIAL_NODES, INITIAL_INCIDENTS } from './data/mockData';
 import type { TelemetryMetric, AwsServiceNode, IncidentAlert } from './types';
 import { LayoutDashboard, Server, Sparkles } from 'lucide-react';
@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   const [incidents, setIncidents] = useState<IncidentAlert[]>(INITIAL_INCIDENTS);
   const [selectedIncident, setSelectedIncident] = useState<IncidentAlert | null>(null);
   const [isAwsModalOpen, setIsAwsModalOpen] = useState<boolean>(false);
-  const [isFounderModalOpen, setIsFounderModalOpen] = useState<boolean>(false);
+  const [isWorkspaceModalOpen, setIsWorkspaceModalOpen] = useState<boolean>(false);
   const [isSimulating, setIsSimulating] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'nodes' | 'incidents'>('overview');
 
@@ -93,7 +93,7 @@ export const App: React.FC = () => {
       {/* Top Navigation */}
       <Header
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
-        onOpenFounderModal={() => setIsFounderModalOpen(true)}
+        onOpenWorkspaceModal={() => setIsWorkspaceModalOpen(true)}
         isSimulating={isSimulating}
         onToggleSimulate={() => setIsSimulating(!isSimulating)}
         theme={theme}
@@ -203,39 +203,39 @@ export const App: React.FC = () => {
         onClose={() => setIsAwsModalOpen(false)}
       />
 
-      {/* Founder & Startup Profile Modal (Triggered by "AS" Button) */}
-      <FounderModal
-        isOpen={isFounderModalOpen}
-        onClose={() => setIsFounderModalOpen(false)}
+      {/* Workspace & Infrastructure Settings Modal */}
+      <WorkspaceSettingsModal
+        isOpen={isWorkspaceModalOpen}
+        onClose={() => setIsWorkspaceModalOpen(false)}
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
       />
 
       {/* Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 py-6 px-4 text-center text-xs text-slate-500 transition-colors">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© 2026 OpsPulse Inc. • Registered at opspulse.in • Built for AWS Cloud Infrastructure</p>
+          <p>© 2026 OpsPulse Systems Inc. • opspulse.in • Enterprise Cloud Observability Platform</p>
           <div className="flex items-center gap-4 text-slate-500 dark:text-slate-400">
             <button
               onClick={() => setIsAwsModalOpen(true)}
               type="button"
               className="hover:text-cyan-600 dark:hover:text-cyan-400 transition"
             >
-              AWS Cloud Architecture
+              Cloud Architecture
             </button>
             <span>•</span>
             <button
-              onClick={() => setIsFounderModalOpen(true)}
+              onClick={() => setIsWorkspaceModalOpen(true)}
               type="button"
-              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-semibold"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
             >
-              Founder Profile
+              Workspace Settings
             </button>
             <span>•</span>
             <a
-              href="mailto:founder@opspulse.in"
+              href="mailto:contact@opspulse.in"
               className="hover:text-cyan-600 dark:hover:text-cyan-400 transition"
             >
-              founder@opspulse.in
+              contact@opspulse.in
             </a>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   onOpenAwsModal: () => void;
-  onOpenFounderModal: () => void;
+  onOpenWorkspaceModal: () => void;
   isSimulating: boolean;
   onToggleSimulate: () => void;
   theme: 'dark' | 'light';
@@ -13,7 +13,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenAwsModal,
-  onOpenFounderModal,
+  onOpenWorkspaceModal,
   isSimulating,
   onToggleSimulate,
   theme,
@@ -119,39 +119,39 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           </button>
 
-          {/* AWS Specs Button */}
+          {/* AWS Architecture Button */}
           <button
             onClick={onOpenAwsModal}
             type="button"
-            className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 border border-amber-500/40 px-2.5 py-1.5 sm:px-3 text-xs font-semibold text-white shadow-sm transition active:scale-95"
+            className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 border border-cyan-500/40 px-2.5 py-1.5 sm:px-3 text-xs font-semibold text-white shadow-sm transition active:scale-95"
             title="View AWS Cloud Architecture & Infrastructure Details"
           >
             <Layers className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">AWS Architecture</span>
-            <span className="sm:hidden">AWS</span>
+            <span className="hidden sm:inline">Cloud Architecture</span>
+            <span className="sm:hidden">Specs</span>
           </button>
 
-          {/* Founder Profile Button ("AS") - Fully Interactive */}
+          {/* Workspace Settings / Profile Button ("OP") */}
           <button
-            onClick={onOpenFounderModal}
+            onClick={onOpenWorkspaceModal}
             type="button"
-            aria-label="Founder Profile: Abhinav Sharma"
-            title="Click to view Founder & AWS Account Profile"
+            aria-label="Workspace & Infrastructure Settings"
+            title="Click to view Workspace & Environment Details"
             className="group flex items-center gap-2 pl-1.5 sm:pl-2.5 border-l border-slate-200 dark:border-slate-800 rounded-lg py-1 hover:bg-slate-100 dark:hover:bg-slate-900/60 transition active:scale-95 cursor-pointer"
           >
-            <div className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-xs font-bold text-white shadow group-hover:ring-2 group-hover:ring-indigo-400 group-hover:ring-offset-2 dark:group-hover:ring-offset-slate-950 transition">
-              AS
+            <div className="relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 via-indigo-600 to-purple-600 text-xs font-bold text-white shadow group-hover:ring-2 group-hover:ring-cyan-400 group-hover:ring-offset-2 dark:group-hover:ring-offset-slate-950 transition">
+              OP
               <span className="absolute bottom-0 right-0 flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full border border-white dark:border-slate-950 bg-emerald-500"></span>
               </span>
             </div>
             <div className="hidden lg:block text-left pr-1">
-              <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
-                Abhinav Sharma
+              <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition">
+                Enterprise SRE
               </p>
               <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-                founder@opspulse.in
+                ws-prod-ap-south
               </p>
             </div>
           </button>

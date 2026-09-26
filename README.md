@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Cloud: AWS Native](https://img.shields.io/badge/Cloud-AWS%20Native-orange.svg)](https://aws.amazon.com/)
-[![Region: ap-south-1](https://img.shields.io/badge/Region-ap--south--1-cyan.svg)](https://opspulse.in)
+[![Region: Multi-Region](https://img.shields.io/badge/Region-Multi--Region-cyan.svg)](https://www.opspulse.in)
 
 **OpsPulse** (`opspulse.in`) is a next-generation AI-driven cloud infrastructure observability and autonomous remediation platform. OpsPulse ingests high-throughput distributed telemetry metrics, predicts service anomalies via foundation models on Amazon Bedrock, and executes automated infrastructure healing on AWS compute clusters.
 
@@ -59,8 +59,8 @@ npm run build
 
 ---
 
-## 📄 License & Contact
+## 📄 Organization & Inquiries
 
-- **Domain**: [opspulse.in](https://opspulse.in)
-- **Contact**: `founder@opspulse.in`
-- **Founder**: Abhinav Sharma
+- **Domain**: [opspulse.in](https://www.opspulse.in)
+- **Organization**: OpsPulse Systems Inc.
+- **Contact**: `contact@opspulse.in`
