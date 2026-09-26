@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Activity, Globe, RefreshCw, Layers } from 'lucide-react';
+import React from 'react';
+import { Activity, RefreshCw, Layers, BookOpen } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   onOpenAwsModal: () => void;
   onOpenWorkspaceModal: () => void;
+  onOpenDocsModal: () => void;
+  onScrollToSection: (sectionId: string) => void;
   isSimulating: boolean;
   onToggleSimulate: () => void;
   theme: 'dark' | 'light';
@@ -14,92 +16,84 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   onOpenAwsModal,
   onOpenWorkspaceModal,
+  onOpenDocsModal,
+  onScrollToSection,
   isSimulating,
   onToggleSimulate,
   theme,
   onToggleTheme,
 }) => {
-  const [time, setTime] = useState<string>('');
-  const [region, setRegion] = useState<string>('eu-north-1 (Stockholm)');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(now.toLocaleTimeString('en-US', { hour12: false }));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md transition-colors">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3 lg:px-8">
-        {/* Brand */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
-            <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-white animate-pulse" />
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                OpsPulse
-              </span>
-              <span className="rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-700/50 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-cyan-700 dark:text-cyan-300">
-                AI Observability
-              </span>
+        {/* Brand & Desktop Navigation */}
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2.5 sm:gap-3 cursor-pointer" onClick={() => onScrollToSection('hero')}>
+            <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
+              <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-white animate-pulse" />
             </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
-              opspulse.in • AWS Native
-            </p>
+            <div>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  OpsPulse
+                </span>
+                <span className="rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-700/50 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-cyan-700 dark:text-cyan-300">
+                  AI Observability
+                </span>
+              </div>
+              <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                opspulse.in • AWS Native
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Center Live Status (Hidden on small screens, shown on md+) */}
-        <div className="hidden md:flex items-center gap-3 lg:gap-4 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-900/60 px-3.5 py-1.5 shadow-inner text-xs">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            </span>
-            <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-              All Systems Operational
-            </span>
-          </div>
-          <span className="h-3 w-px bg-slate-300 dark:bg-slate-800"></span>
-          <div className="flex items-center gap-1 text-slate-600 dark:text-slate-400">
-            <Globe className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
-            <select
-              aria-label="Select AWS Region"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              className="bg-transparent font-mono text-xs focus:outline-none cursor-pointer text-slate-700 dark:text-slate-300"
+          {/* Desktop Nav Links */}
+          <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+            <button
+              onClick={() => onScrollToSection('console')}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
             >
-              <option value="eu-north-1 (Stockholm)" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                eu-north-1 (Stockholm - Prod)
-              </option>
-              <option value="ap-south-1 (Mumbai)" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                ap-south-1 (Mumbai)
-              </option>
-              <option value="us-east-1 (N. Virginia)" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                us-east-1 (N. Virginia)
-              </option>
-              <option value="eu-west-1 (Ireland)" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                eu-west-1 (Ireland)
-              </option>
-            </select>
-          </div>
-          <span className="h-3 w-px bg-slate-300 dark:bg-slate-800"></span>
-          <span className="font-mono text-slate-500 dark:text-slate-400">{time} UTC</span>
+              Live Console
+            </button>
+            <button
+              onClick={() => onScrollToSection('mesh')}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+            >
+              Causal Mesh
+            </button>
+            <button
+              onClick={onOpenAwsModal}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+            >
+              Cloud Architecture
+            </button>
+            <button
+              onClick={() => onScrollToSection('finops')}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+            >
+              FinOps ROI
+            </button>
+            <button
+              onClick={() => onScrollToSection('pricing')}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+            >
+              Pricing
+            </button>
+            <button
+              onClick={onOpenDocsModal}
+              className="px-3 py-1.5 rounded-lg hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition flex items-center gap-1"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              <span>Docs</span>
+            </button>
+          </nav>
         </div>
 
         {/* Right Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2.5">
           {/* Theme Toggle (Dark / Light) */}
-          <ThemeToggle
-            theme={theme}
-            onToggleTheme={onToggleTheme}
-          />
+          <ThemeToggle theme={theme} onToggleTheme={onToggleTheme} />
 
           {/* Live stream toggle */}
           <button
@@ -119,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           </button>
 
-          {/* AWS Architecture Button */}
+          {/* Architecture Button */}
           <button
             onClick={onOpenAwsModal}
             type="button"
@@ -127,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
             title="View AWS Cloud Architecture & Infrastructure Details"
           >
             <Layers className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Cloud Architecture</span>
+            <span className="hidden sm:inline">Cloud Specs</span>
             <span className="sm:hidden">Specs</span>
           </button>
 
