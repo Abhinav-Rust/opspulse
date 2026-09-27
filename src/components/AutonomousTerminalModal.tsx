@@ -104,13 +104,13 @@ export const AutonomousTerminalModal: React.FC<AutonomousTerminalModalProps> = (
           </button>
         </div>
 
-        {/* Simulation Notice Banner - Visible on all viewports */}
-        <div className="border-b border-amber-500/20 bg-amber-500/10 px-3 sm:px-4 py-1.5 text-[11px] font-mono text-amber-300 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 min-w-0">
-            <Sparkles className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-            <span className="truncate">Simulated execution — no AWS resources are changed.</span>
+        {/* Simulation Notice Banner - Wraps cleanly on all viewports, never truncated */}
+        <div className="border-b border-amber-500/20 bg-amber-500/10 px-3 sm:px-4 py-2 text-[11px] font-mono text-amber-300 flex flex-col xs:flex-row xs:items-center justify-between gap-1.5">
+          <div className="flex items-start gap-1.5 min-w-0 flex-1">
+            <Sparkles className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
+            <span className="leading-snug break-words">Simulated execution — no AWS resources are changed.</span>
           </div>
-          <span className="shrink-0 rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-300">
+          <span className="self-start xs:self-auto shrink-0 rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-300">
             Sandbox
           </span>
         </div>
@@ -158,19 +158,19 @@ export const AutonomousTerminalModal: React.FC<AutonomousTerminalModalProps> = (
           )}
         </div>
 
-        {/* Terminal Footer Controls */}
-        <div className="border-t border-slate-800 bg-slate-900 px-3 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+        {/* Terminal Footer Controls - Wraps cleanly on narrow screens */}
+        <div className="border-t border-slate-800 bg-slate-900 px-3 sm:px-4 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2">
           <button
             onClick={handleCopyLogs}
             type="button"
-            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-mono text-slate-300 hover:text-white transition shrink-0"
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-[11px] sm:text-xs font-mono text-slate-300 hover:text-white transition"
           >
             {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
             <span className="hidden sm:inline">{copied ? 'Audit Log Copied' : 'Copy Audit Log'}</span>
             <span className="sm:hidden">{copied ? 'Copied' : 'Copy Log'}</span>
           </button>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => {
                 setActiveIncidentId(null);

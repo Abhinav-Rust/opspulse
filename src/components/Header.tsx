@@ -22,27 +22,27 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleTheme,
 }) => {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md transition-colors">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-3.5 py-2.5 sm:px-6 sm:py-3 lg:px-8">
+    <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md transition-colors w-full overflow-x-hidden">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-2.5 sm:px-6 py-2 sm:py-3 lg:px-8">
         {/* Brand & Desktop Navigation */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 sm:gap-6 min-w-0">
           <div
-            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer shrink-0"
             onClick={() => onScrollToSection('hero')}
           >
-            <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
-              <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-white animate-pulse" />
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
+              <Activity className="h-4 w-4 sm:h-6 sm:w-6 text-white animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                <span className="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">
                   OpsPulse
                 </span>
-                <span className="rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-700/50 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-cyan-700 dark:text-cyan-300">
+                <span className="hidden sm:inline-flex rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-700/50 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-cyan-700 dark:text-cyan-300">
                   AI Observability
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+              <p className="hidden sm:block text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono">
                 opspulse.in • AWS Native
               </p>
             </div>
@@ -97,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Right Actions: Clean SaaS Header */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
           {/* Cloud Specs (Secondary) */}
           <button
             onClick={onOpenAwsModal}
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenSignInModal}
             type="button"
-            className="px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 rounded-xl transition"
+            className="px-2 sm:px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg sm:rounded-xl transition"
           >
             Sign In
           </button>
@@ -122,14 +122,15 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenTrialModal}
             type="button"
-            className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 px-3 sm:px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition active:scale-95"
+            className="flex items-center gap-1 sm:gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 px-2.5 sm:px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition active:scale-95"
           >
-            <span>Request Early Access</span>
+            <span className="hidden sm:inline">Request Early Access</span>
+            <span className="sm:hidden">Early Access</span>
             <ArrowRight className="h-3 w-3 hidden sm:inline" />
           </button>
 
           {/* Theme Toggle (Dark / Light) cleanly positioned at right edge */}
-          <div className="pl-1 border-l border-slate-200 dark:border-slate-800">
+          <div className="pl-1 border-l border-slate-200 dark:border-slate-800 shrink-0">
             <ThemeToggle theme={theme} onToggleTheme={onToggleTheme} />
           </div>
         </div>

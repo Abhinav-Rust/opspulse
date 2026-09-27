@@ -156,7 +156,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200 overflow-x-hidden w-full max-w-full">
       {/* Top Navigation Bar */}
       <Header
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
@@ -171,9 +171,9 @@ export const App: React.FC = () => {
       {/* Hero Section */}
       <section id="hero" className="border-b border-slate-200 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/30 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors">
         <div className="mx-auto max-w-7xl text-center space-y-5">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 dark:border-cyan-800/80 bg-cyan-50 dark:bg-cyan-950/60 px-3.5 py-1 text-xs font-semibold text-cyan-700 dark:text-cyan-300 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5 text-cyan-500 animate-pulse" />
-            <span>OpsPulse Enterprise Cloud • AWS Native Architecture</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 dark:border-cyan-800/80 bg-cyan-50 dark:bg-cyan-950/60 px-3 py-1 text-[11px] sm:text-xs font-semibold text-cyan-700 dark:text-cyan-300 shadow-sm max-w-full">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-500 animate-pulse shrink-0" />
+            <span className="truncate sm:overflow-visible">OpsPulse Enterprise Cloud • AWS Native Architecture</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight">
