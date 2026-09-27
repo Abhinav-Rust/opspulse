@@ -27,6 +27,7 @@ import {
   CheckCircle2,
   Activity,
   RefreshCw,
+  Play,
 } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -78,6 +79,31 @@ export const App: React.FC = () => {
     const el = document.getElementById(sectionId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleLaunchInteractiveDemo = () => {
+    setIsTrialModalOpen(false);
+    setIsSignInModalOpen(false);
+    setIsAwsModalOpen(false);
+    setIsDocsModalOpen(false);
+    setActiveTab('incidents');
+
+    // Scroll smoothly to console section
+    setTimeout(() => {
+      const el = document.getElementById('console');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 60);
+
+    // Pick top unresolved or critical incident and launch the interactive CloudShell terminal
+    const targetIncident = incidents.find((i) => i.severity === 'critical') || incidents[0];
+    if (targetIncident) {
+      setTimeout(() => {
+        setTerminalIncident(targetIncident);
+        setIsTerminalModalOpen(true);
+      }, 350);
     }
   };
 
@@ -162,10 +188,11 @@ export const App: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
             <button
               type="button"
-              onClick={() => handleScrollToSection('console')}
+              onClick={handleLaunchInteractiveDemo}
               className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 px-5 py-3 text-xs sm:text-sm font-bold text-white shadow-md transition active:scale-95 cursor-pointer"
             >
-              <span>Explore Live Telemetry Console</span>
+              <Sparkles className="h-4 w-4 text-cyan-200" />
+              <span>Launch Interactive Demo</span>
               <ArrowRight className="h-4 w-4" />
             </button>
 
@@ -227,6 +254,14 @@ export const App: React.FC = () => {
                 <span className="rounded-full bg-amber-50 dark:bg-amber-950/80 border border-amber-200 dark:border-amber-700/60 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
                   Interactive Demo • Simulated Workload Telemetry
                 </span>
+                <button
+                  type="button"
+                  onClick={handleLaunchInteractiveDemo}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white px-3 py-0.5 text-[11px] font-bold shadow-sm transition active:scale-95 cursor-pointer ml-1"
+                >
+                  <Play className="h-3 w-3 fill-current" />
+                  <span>Run CloudShell Demo</span>
+                </button>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Real-time telemetry streams, node health state, and zero-shot anomaly classification
@@ -339,7 +374,7 @@ export const App: React.FC = () => {
         <section id="pricing">
           <PricingSection
             onOpenDocs={() => setIsDocsModalOpen(true)}
-            onScrollToConsole={() => handleScrollToSection('console')}
+            onLaunchInteractiveDemo={handleLaunchInteractiveDemo}
           />
         </section>
       </main>
@@ -387,8 +422,8 @@ export const App: React.FC = () => {
         isOpen={isTrialModalOpen}
         onClose={() => setIsTrialModalOpen(false)}
         planName="Startup Pro"
-        onOpenDocs={() => setIsDocsModalOpen(true)}
-        onScrollToConsole={() => handleScrollToSection('console')}
+        onOpenDocs={() => setIsAwsModalOpen(true)}
+        onLaunchInteractiveDemo={handleLaunchInteractiveDemo}
       />
 
       {/* About Founders & Company Modal */}

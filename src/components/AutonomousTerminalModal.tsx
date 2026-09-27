@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Terminal, CheckCircle2, Play, RefreshCw, Copy, Check } from 'lucide-react';
+import { X, Terminal, CheckCircle2, Play, RefreshCw, Copy, Check, Sparkles } from 'lucide-react';
 import type { IncidentAlert } from '../types';
 
 interface AutonomousTerminalModalProps {
@@ -91,6 +91,10 @@ export const AutonomousTerminalModal: React.FC<AutonomousTerminalModalProps> = (
             <h3 id="terminal-modal-title" className="text-xs sm:text-sm font-mono font-semibold text-slate-200">
               OpsPulse CloudShell Autonomous Runbook Execution
             </h3>
+            <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-cyan-950/80 border border-cyan-800/80 px-2 py-0.5 text-[10px] text-cyan-300 font-mono">
+              <Sparkles className="h-3 w-3 text-cyan-400" />
+              <span>Interactive Remediation Demo</span>
+            </span>
           </div>
           <button
             onClick={() => {

@@ -82,6 +82,16 @@ export const IncidentFeed: React.FC<IncidentFeedProps> = ({
         </div>
       </div>
 
+      {/* Interactive Demonstration Guidance Banner */}
+      <div className="mb-4 p-3 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 flex items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+          <span className="text-slate-700 dark:text-slate-300">
+            <strong>Interactive Demo:</strong> Select any incident below to review Amazon Bedrock root-cause diagnostics, or trigger automated AWS SSM runbook execution.
+          </span>
+        </div>
+      </div>
+
       {/* Incident List */}
       <div className="divide-y divide-slate-100 dark:divide-slate-800/70">
         {filteredIncidents.map((incident) => (

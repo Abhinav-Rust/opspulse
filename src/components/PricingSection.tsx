@@ -4,12 +4,12 @@ import { TrialSignupModal } from './TrialSignupModal';
 
 interface PricingSectionProps {
   onOpenDocs: () => void;
-  onScrollToConsole: () => void;
+  onLaunchInteractiveDemo: () => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({
   onOpenDocs,
-  onScrollToConsole,
+  onLaunchInteractiveDemo,
 }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
   const [modalPlan, setModalPlan] = useState<string | null>(null);
@@ -213,7 +213,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
           onClose={() => setModalPlan(null)}
           planName={modalPlan}
           onOpenDocs={onOpenDocs}
-          onScrollToConsole={onScrollToConsole}
+          onLaunchInteractiveDemo={onLaunchInteractiveDemo}
         />
       )}
     </div>
