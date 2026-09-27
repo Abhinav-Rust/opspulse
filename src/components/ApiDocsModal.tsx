@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, BookOpen, Copy, Check } from 'lucide-react';
+import { X, BookOpen, Copy, Check, Info } from 'lucide-react';
 
 interface ApiDocsModalProps {
   isOpen: boolean;
@@ -17,22 +17,25 @@ export const ApiDocsModal: React.FC<ApiDocsModalProps> = ({ isOpen, onClose }) =
     setTimeout(() => setCopiedKey(null), 2000);
   };
 
-  const nodeSnippet = `// Initialize OpsPulse OpenTelemetry SDK
-import { initOpsPulse } from '@opspulse/agent';
+  const otelSnippet = `// Standard OpenTelemetry Node.js SDK Integration
+import { NodeSDK } from '@opentelemetry/sdk-node';
+import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
-const tracer = initOpsPulse({
-  apiKey: process.env.OPSPULSE_API_KEY,
-  serviceName: 'checkout-service',
-  awsRegion: 'ap-south-1',
-  enableBedrockDiagnostics: true,
-  autoRemediation: {
-    enabled: true,
-    maxConcurrentActions: 2,
-    approvalPolicy: 'human-in-the-loop'
-  }
-});`;
+const sdk = new NodeSDK({
+  traceExporter: new OTLPTraceExporter({
+    url: 'https://otlp.opspulse.in/v1/traces',
+    headers: {
+      'x-opspulse-workspace-key': process.env.OPSPULSE_API_KEY || '',
+      'x-opspulse-region': 'eu-north-1',
+    },
+  }),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
 
-  const cfnSnippet = `# AWS CloudFormation 1-Click Agent Launch
+sdk.start();`;
+
+  const cfnSnippet = `# AWS CloudFormation Telemetry Collector IAM Role
 Resources:
   OpsPulseTelemetryRole:
     Type: AWS::IAM::Role
@@ -67,7 +70,7 @@ Resources:
                 Developer Integration &amp; SDK Quickstart
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Deploy the OpsPulse OpenTelemetry Collector into your AWS stack in under 5 minutes
+                Stream telemetry into OpsPulse via OpenTelemetry OTLP or private preview SDK
               </p>
             </div>
           </div>
@@ -80,27 +83,41 @@ Resources:
           </button>
         </div>
 
+        {/* Private Developer Preview Notice */}
+        <div className="mt-4 p-3.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5">
+          <Info className="h-4 w-4 text-cyan-500 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <span className="font-bold text-slate-900 dark:text-white">Private Preview Notice:</span>
+            <p className="text-[11px] leading-relaxed">
+              The proprietary wrapper <code>@opspulse/agent</code> is distributed via GitHub Packages for enrolled design partners. During the private beta, you can stream standard OTel data immediately using the official <code>@opentelemetry/sdk-node</code> package below.
+            </p>
+          </div>
+        </div>
+
         {/* Content */}
         <div className="mt-5 space-y-5">
-          {/* Step 1: Install */}
+          {/* Step 1: Install OpenTelemetry */}
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-600 text-white text-[11px]">1</span>
-                Install OpenTelemetry Agent
+                Install Standard OpenTelemetry SDK (Public npm)
               </span>
               <button
                 type="button"
-                onClick={() => copyCode('npm install @opspulse/agent @opentelemetry/api', 'install')}
+                onClick={() => copyCode('npm install @opentelemetry/sdk-node @opentelemetry/auto-instrumentations-node @opentelemetry/exporter-trace-otlp-http', 'install')}
                 className="flex items-center gap-1 text-[11px] font-mono text-cyan-600 dark:text-cyan-400 hover:underline"
               >
                 {copiedKey === 'install' ? <Check className="h-3 w-3 text-emerald-500" /> : <Copy className="h-3 w-3" />}
                 <span>{copiedKey === 'install' ? 'Copied' : 'Copy'}</span>
               </button>
             </div>
-            <pre className="rounded-xl bg-slate-900 p-3 font-mono text-xs text-cyan-300 border border-slate-800">
-              <code>npm install @opspulse/agent @opentelemetry/api</code>
+            <pre className="rounded-xl bg-slate-900 p-3 font-mono text-xs text-cyan-300 border border-slate-800 overflow-x-auto">
+              <code>npm install @opentelemetry/sdk-node @opentelemetry/auto-instrumentations-node @opentelemetry/exporter-trace-otlp-http</code>
             </pre>
+            <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 font-mono">
+              Enrolled partners with GitHub Packages access: <code>npm install --registry=https://npm.pkg.github.com/Abhinav-Rust @opspulse/agent</code>
+            </p>
           </div>
 
           {/* Step 2: Initialize in Node.js */}
@@ -108,11 +125,11 @@ Resources:
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-600 text-white text-[11px]">2</span>
-                Initialize in Application Entrypoint
+                Initialize OTLP Exporter in Entrypoint
               </span>
               <button
                 type="button"
-                onClick={() => copyCode(nodeSnippet, 'node')}
+                onClick={() => copyCode(otelSnippet, 'node')}
                 className="flex items-center gap-1 text-[11px] font-mono text-cyan-600 dark:text-cyan-400 hover:underline"
               >
                 {copiedKey === 'node' ? <Check className="h-3 w-3 text-emerald-500" /> : <Copy className="h-3 w-3" />}
@@ -120,7 +137,7 @@ Resources:
               </button>
             </div>
             <pre className="rounded-xl bg-slate-900 p-3.5 font-mono text-[11px] text-slate-200 border border-slate-800 overflow-x-auto leading-relaxed">
-              <code>{nodeSnippet}</code>
+              <code>{otelSnippet}</code>
             </pre>
           </div>
 
@@ -144,17 +161,6 @@ Resources:
               <code>{cfnSnippet}</code>
             </pre>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-6 flex justify-end border-t border-slate-200 dark:border-slate-800 pt-4">
-          <button
-            onClick={onClose}
-            type="button"
-            className="rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 px-5 py-2 text-xs font-bold text-white transition active:scale-95 shadow-sm"
-          >
-            Close Documentation
-          </button>
         </div>
       </div>
     </div>

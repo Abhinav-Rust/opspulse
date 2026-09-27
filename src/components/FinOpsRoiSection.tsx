@@ -32,12 +32,12 @@ export const FinOpsRoiSection: React.FC = () => {
             <h2 className="text-base font-bold text-slate-900 dark:text-white">
               Autonomous Value &amp; FinOps Intelligence
             </h2>
-            <span className="rounded-full bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800/70 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300">
-              Verified ROI
+            <span className="rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-800/70 px-2.5 py-0.5 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300">
+              Benchmark Projections (Simulated Testbed)
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            Measurable impact on infrastructure uptime, human engineering hours, and cloud cost efficiency
+            Projected efficiency models based on autonomous AWS SSM remediation patterns and idle resource pruning across simulated staging clusters
           </p>
         </div>
 

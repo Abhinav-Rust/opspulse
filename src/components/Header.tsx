@@ -118,13 +118,13 @@ export const Header: React.FC<HeaderProps> = ({
             Sign In
           </button>
 
-          {/* Primary CTA: Start Free Trial */}
+          {/* Primary CTA: Request Early Access */}
           <button
             onClick={onOpenTrialModal}
             type="button"
             className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 px-3 sm:px-3.5 py-1.5 text-xs font-bold text-white shadow-sm transition active:scale-95"
           >
-            <span>Start Free Trial</span>
+            <span>Request Early Access</span>
             <ArrowRight className="h-3 w-3 hidden sm:inline" />
           </button>
 

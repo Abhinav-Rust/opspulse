@@ -44,13 +44,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         'Slack & PagerDuty incident webhooks',
         'Priority email support (4hr SLA)',
       ],
-      cta: 'Start 14-Day Free Trial',
-      badge: 'Most Popular',
+      cta: 'Request Early Access',
+      badge: 'Private Beta',
       highlighted: true,
     },
     {
       name: 'Enterprise Cloud',
-      description: 'Mission-critical observability with dedicated VPC peering & custom SLAs.',
+      description: 'Dedicated cloud resilience with custom VPC peering & architecture guidance.',
       price: 'Custom',
       period: 'tailored deployment',
       features: [
@@ -58,11 +58,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         'Unlimited high-throughput event ingestion',
         'Dedicated VPC Peering & PrivateLink',
         'Custom fine-tuned Bedrock models',
-        '99.999% Availability SLA guarantee',
-        'SOC 2 Type II compliance audit reports',
-        '24/7 dedicated SRE support engineer',
+        'Architected for 99.9% Uptime Target',
+        'Designed for SOC 2 Type II alignment',
+        'Direct access to founding engineering team',
       ],
-      cta: 'Contact Enterprise Sales',
+      cta: 'Contact Founding Team',
       highlighted: false,
     },
   ];
@@ -187,11 +187,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
             <div className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
               <span>Enterprise Procurement via AWS Marketplace</span>
               <span className="text-[10px] bg-cyan-100 dark:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 px-2 py-0.5 rounded font-mono font-medium">
-                Private Beta
+                Planned Roadmap
               </span>
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-              Draw down existing AWS EDP commitments with zero credit card friction. Invoiced directly on your AWS monthly bill.
+              Architecting for AWS Marketplace integration. Draw down AWS commitments seamlessly as OpsPulse moves to general availability.
             </p>
           </div>
         </div>

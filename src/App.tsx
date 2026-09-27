@@ -12,6 +12,9 @@ import { PricingSection } from './components/PricingSection';
 import { ApiDocsModal } from './components/ApiDocsModal';
 import { SignInModal } from './components/SignInModal';
 import { TrialSignupModal } from './components/TrialSignupModal';
+import { AboutModal } from './components/AboutModal';
+import { PrivacyModal } from './components/PrivacyModal';
+import { TermsModal } from './components/TermsModal';
 import { INITIAL_METRICS, INITIAL_NODES, INITIAL_INCIDENTS } from './data/mockData';
 import type { TelemetryMetric, AwsServiceNode, IncidentAlert } from './types';
 import {
@@ -39,6 +42,9 @@ export const App: React.FC = () => {
   const [isTerminalModalOpen, setIsTerminalModalOpen] = useState<boolean>(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState<boolean>(false);
   const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState<boolean>(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState<boolean>(false);
 
   const [isSimulating, setIsSimulating] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'nodes' | 'incidents'>('overview');
@@ -190,7 +196,7 @@ export const App: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>99.99% Availability SLA</span>
+              <span>Architected for 99.9% Uptime Target</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -198,7 +204,7 @@ export const App: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Global Sub-20ms CloudFront POPs</span>
+              <span>Global Sub-20ms CloudFront Edge</span>
             </div>
           </div>
         </div>
@@ -210,7 +216,7 @@ export const App: React.FC = () => {
         <section id="console" className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="flex h-2.5 w-2.5 relative">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-500"></span>
@@ -218,6 +224,9 @@ export const App: React.FC = () => {
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                   Live Autonomous Observability Console
                 </h2>
+                <span className="rounded-full bg-amber-50 dark:bg-amber-950/80 border border-amber-200 dark:border-amber-700/60 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-400">
+                  Interactive Demo • Simulated Workload Telemetry
+                </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Real-time telemetry streams, node health state, and zero-shot anomaly classification
@@ -382,27 +391,49 @@ export const App: React.FC = () => {
         onScrollToConsole={() => handleScrollToSection('console')}
       />
 
+      {/* About Founders & Company Modal */}
+      <AboutModal
+        isOpen={isAboutModalOpen}
+        onClose={() => setIsAboutModalOpen(false)}
+      />
+
+      {/* Privacy Policy Modal */}
+      <PrivacyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+
+      {/* Terms of Service Modal */}
+      <TermsModal
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
+
       {/* Comprehensive Enterprise Footer */}
       <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-500 transition-colors">
         <div className="mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Activity className="h-4 w-4 text-cyan-500" />
-              <span className="font-bold text-sm text-slate-900 dark:text-white">OpsPulse Systems</span>
+              <span className="font-bold text-sm text-slate-900 dark:text-white">OpsPulse Technologies</span>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Autonomous cloud infrastructure telemetry, generative root-cause analysis, and self-healing runbooks.
+              Autonomous cloud infrastructure observability, generative root-cause analysis, and self-healing runbooks on AWS.
             </p>
+            <div className="mt-3 text-[11px] text-slate-400">
+              <p className="font-semibold text-slate-700 dark:text-slate-300">Engineering HQ:</p>
+              <p>Bengaluru &amp; Delhi NCR, India</p>
+            </div>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">
-              Platform
+              Platform &amp; Architecture
             </h4>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li>
                 <button onClick={() => handleScrollToSection('console')} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  Live SRE Console
+                  Interactive Demo Console
                 </button>
               </li>
               <li>
@@ -412,12 +443,12 @@ export const App: React.FC = () => {
               </li>
               <li>
                 <button onClick={() => setIsAwsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  Cloud Specifications
+                  AWS Architecture Blueprint
                 </button>
               </li>
               <li>
                 <button onClick={() => handleScrollToSection('finops')} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  FinOps Analytics
+                  FinOps Benchmarks
                 </button>
               </li>
             </ul>
@@ -425,17 +456,12 @@ export const App: React.FC = () => {
 
           <div>
             <h4 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">
-              Developers
+              Developers &amp; Legal
             </h4>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li>
                 <button onClick={() => setIsDocsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  Integration Quickstart
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setIsDocsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  CloudFormation Templates
+                  Integration Quickstart (OTel)
                 </button>
               </li>
               <li>
@@ -443,27 +469,42 @@ export const App: React.FC = () => {
                   GitHub Open Source
                 </a>
               </li>
+              <li>
+                <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
+                  Terms of Service
+                </button>
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] mb-3">
-              Governance &amp; Contact
+              Company &amp; Contact
             </h4>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
+              <li>
+                <button onClick={() => setIsAboutModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
+                  About Founders &amp; Mission
+                </button>
+              </li>
+              <li>
+                <a href="mailto:founder@opspulse.in" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition font-mono">
+                  founder@opspulse.in
+                </a>
+              </li>
               <li>
                 <a href="mailto:contact@opspulse.in" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition font-mono">
                   contact@opspulse.in
                 </a>
               </li>
               <li>
-                <button onClick={() => setIsAwsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  AWS Well-Architected Review
-                </button>
-              </li>
-              <li>
                 <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">
-                  SLA: 99.99% Operational
+                  AWS Cloud Architecture Active
                 </span>
               </li>
             </ul>
@@ -471,8 +512,8 @@ export const App: React.FC = () => {
         </div>
 
         <div className="mx-auto max-w-7xl pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
-          <p>© 2026 OpsPulse Systems Inc. • opspulse.in • All rights reserved.</p>
-          <p className="font-mono">Registered Domain: opspulse.in (Multi-Region CloudFront Production)</p>
+          <p>© 2026 OpsPulse Technologies • Bengaluru &amp; Delhi NCR, India • All rights reserved.</p>
+          <p className="font-mono">Registered Domain: opspulse.in • Edge CloudFront Ingestion</p>
         </div>
       </footer>
     </div>
