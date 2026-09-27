@@ -99,7 +99,7 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-1.5">
               <Zap className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
-              Core Infrastructure Capabilities &amp; Performance SLA
+              Core Infrastructure Capabilities &amp; Target Performance
             </h4>
             <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
               <table className="w-full text-left text-xs min-w-[500px]">
@@ -107,7 +107,7 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
                   <tr>
                     <th className="p-3">AWS Service Component</th>
                     <th className="p-3">Architectural Role</th>
-                    <th className="p-3 text-right">Performance / SLA</th>
+                    <th className="p-3 text-right">Target Performance</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-mono text-slate-700 dark:text-slate-300">

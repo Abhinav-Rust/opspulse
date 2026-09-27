@@ -33,11 +33,11 @@ export const FinOpsRoiSection: React.FC = () => {
               Autonomous Value &amp; FinOps Intelligence
             </h2>
             <span className="rounded-full bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-800/70 px-2.5 py-0.5 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300">
-              Benchmark Projections (Simulated Testbed)
+              Illustrative Example • Sample Telemetry Data
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            Projected efficiency models based on autonomous AWS SSM remediation patterns and idle resource pruning across simulated staging clusters
+            The figures below illustrate the projected impact of autonomous AWS Systems Manager remediation and compute reclamation across a sample staging cluster
           </p>
         </div>
 
@@ -120,10 +120,10 @@ export const FinOpsRoiSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Production SLA */}
+        {/* Target Availability */}
         <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/60 p-4">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Availability SLA</span>
+            <span className="text-xs font-semibold uppercase tracking-wider">Target Availability</span>
             <ShieldCheck className="h-4 w-4 text-indigo-500" />
           </div>
           <div className="flex items-baseline gap-2">
@@ -131,7 +131,7 @@ export const FinOpsRoiSection: React.FC = () => {
             <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400">Multi-Region</span>
           </div>
           <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-            Zero customer-impacting outages
+            Modeled target across multi-AZ clusters
           </p>
         </div>
       </div>

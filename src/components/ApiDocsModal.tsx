@@ -24,9 +24,11 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 
 const sdk = new NodeSDK({
   traceExporter: new OTLPTraceExporter({
-    url: 'https://otlp.opspulse.in/v1/traces',
+    // Replace with dedicated tenant gateway assigned during onboarding:
+    // Format: https://<workspace-id>.otlp.opspulse.in/v1/traces
+    url: process.env.OPSPULSE_INGESTION_URL || 'https://<your-cluster-id>.otlp.opspulse.in/v1/traces',
     headers: {
-      'x-opspulse-workspace-key': process.env.OPSPULSE_API_KEY || '',
+      'x-opspulse-workspace-key': process.env.OPSPULSE_API_KEY || '<your-workspace-token>',
       'x-opspulse-region': 'eu-north-1',
     },
   }),

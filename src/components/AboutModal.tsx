@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Building2, MapPin, Mail, Sparkles } from 'lucide-react';
+import { X, Building2, MapPin, Mail, Sparkles, User, ExternalLink } from 'lucide-react';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -48,6 +48,28 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
             Modern cloud architectures generate millions of telemetry signals per second across distributed microservices. When incidents occur, human on-call engineers spend critical minutes manually parsing log dumps and cross-referencing metrics. OpsPulse eliminates that operational toil by uniting OpenTelemetry stream ingestion with <strong>Amazon Bedrock foundation models</strong> to isolate root causes and trigger safe, deterministic AWS Systems Manager (SSM) remediation runbooks.
           </p>
 
+          {/* Founder Section */}
+          <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2">
+            <div className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white text-xs">
+              <User className="h-4 w-4 text-cyan-500" />
+              <span>Founder &amp; Engineering Lead</span>
+            </div>
+            <p className="text-xs text-slate-700 dark:text-slate-300">
+              <strong>Abhinav Sharma</strong> — Cloud &amp; systems software engineer specializing in high-concurrency distributed systems, Rust, OpenTelemetry, and AWS cloud architecture.
+            </p>
+            <div className="pt-1">
+              <a
+                href="https://github.com/Abhinav-Rust"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:underline"
+              >
+                <span>GitHub: @Abhinav-Rust</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
             <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-1.5">
               <div className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white text-xs">
@@ -66,8 +88,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                 <span>Direct Contact</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Founder: <a href="mailto:founder@opspulse.in" className="text-cyan-600 dark:text-cyan-400 hover:underline">founder@opspulse.in</a><br />
-                General: <a href="mailto:contact@opspulse.in" className="text-cyan-600 dark:text-cyan-400 hover:underline">contact@opspulse.in</a>
+                Founder: <a href="mailto:founder@opspulse.in" className="text-cyan-600 dark:text-cyan-400 hover:underline font-mono">founder@opspulse.in</a><br />
+                General: <a href="mailto:contact@opspulse.in" className="text-cyan-600 dark:text-cyan-400 hover:underline font-mono">contact@opspulse.in</a>
               </p>
             </div>
           </div>
@@ -75,10 +97,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
           <div className="space-y-2 pt-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
               <Sparkles className="h-3.5 w-3.5 text-cyan-500" />
-              <span>Current Development Stage &amp; Program Participation</span>
+              <span>Current Development Stage</span>
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              OpsPulse is currently in active <strong>Private Developer Preview</strong>. We are self-funded and participating in the <strong>AWS Activate for Startups</strong> initiative to build and benchmark our autonomous SRE architecture against high-volume enterprise cloud workloads.
+              OpsPulse is currently in active <strong>Private Developer Preview</strong>. We are a self-funded startup project applying for the <strong>AWS Activate for Startups</strong> program to benchmark autonomous remediation models against enterprise workloads on AWS.
             </p>
           </div>
         </div>

@@ -55,9 +55,9 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) =
           </section>
 
           <section className="space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">3. Early Access Information</h4>
+            <h4 className="font-bold text-slate-900 dark:text-white">3. Early Access Information &amp; Form Processing</h4>
             <p>
-              When requesting early access, we collect your work email, cloud region, and infrastructure scale solely for communication regarding onboarding, technical support, and architectural evaluations. We do not sell or lease your contact information to third parties.
+              When requesting early access, we collect your work email, cloud region, and infrastructure scale solely for communication regarding onboarding, technical support, and architectural evaluations. Early-access form submissions are transmitted securely to our founding inbox via FormSubmit (formsubmit.co). We do not sell or lease your contact information, nor do we run third-party advertising trackers or session recording scripts.
             </p>
           </section>
 

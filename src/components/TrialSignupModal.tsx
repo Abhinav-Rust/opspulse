@@ -63,14 +63,16 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
         }),
       });
 
-      if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}`);
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data || (data.success !== 'true' && data.success !== true)) {
+        throw new Error(data?.message || 'Form submission could not be verified by endpoint.');
       }
 
       setIsSubmitted(true);
-    } catch {
-      // Fallback: If network is offline or blocked, still record request state and provide mailto
-      setErrorMsg('Network request could not be completed. You can email founder@opspulse.in directly.');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Submission could not be completed';
+      setErrorMsg(`${msg}. Please use the direct email link below.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -175,9 +177,20 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
             </div>
 
             {errorMsg && (
-              <div className="my-3 p-3 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/80 text-amber-700 dark:text-amber-300 text-xs flex items-center gap-2">
-                <AlertCircle className="h-4 w-4 shrink-0" />
-                <span>{errorMsg}</span>
+              <div className="my-3 p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/80 text-amber-800 dark:text-amber-200 text-xs space-y-2">
+                <div className="flex items-start gap-2">
+                  <AlertCircle className="h-4 w-4 shrink-0 text-amber-600 mt-0.5" />
+                  <span>{errorMsg}</span>
+                </div>
+                <div className="pt-1">
+                  <a
+                    href={`mailto:founder@opspulse.in?subject=OpsPulse%20Early%20Access%20Request&body=Work%20Email:%20${encodeURIComponent(email)}%0AAWS%20Region:%20${encodeURIComponent(region)}%0ANodes:%20${encodeURIComponent(nodes)}%0AWorkload:%20${encodeURIComponent(workload)}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold text-[11px] transition shadow-sm"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    <span>Send Request Directly to founder@opspulse.in</span>
+                  </a>
+                </div>
               </div>
             )}
 

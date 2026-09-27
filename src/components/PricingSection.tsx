@@ -42,7 +42,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         'Autonomous AWS SSM Runbook Execution',
         '30-day hot cache + 1-year S3 lakehouse',
         'Slack & PagerDuty incident webhooks',
-        'Priority email support (4hr SLA)',
+        'Priority email support (same-day response)',
       ],
       cta: 'Request Early Access',
       badge: 'Private Beta',

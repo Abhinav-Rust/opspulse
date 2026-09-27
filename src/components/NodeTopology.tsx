@@ -36,7 +36,7 @@ export const NodeTopology: React.FC<NodeTopologyProps> = ({ nodes }) => {
             AWS Infrastructure Topology
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">
-            Live operational nodes running in eu-north-1 &amp; CloudFront edge distribution
+            Simulated service nodes representing AWS architecture in eu-north-1 &amp; CloudFront edge distribution
           </p>
         </div>
         <div className="flex items-center gap-2">
