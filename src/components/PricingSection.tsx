@@ -85,7 +85,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
           Planned Pricing for Modern Cloud Teams
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Target pricing for our upcoming production release. Currently onboarding our initial cohort of 5 design partners under private pilot preview.
+          Target pricing for our upcoming production release. We aim to onboard up to five design partners over the next 90 days.
         </p>
 
         {/* Annual / Monthly Toggle */}

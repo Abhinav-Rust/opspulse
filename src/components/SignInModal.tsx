@@ -49,7 +49,7 @@ export const SignInModal: React.FC<SignInModalProps> = ({
         <div className="p-4 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5 mb-5 leading-relaxed">
           <Lock className="h-4 w-4 text-cyan-500 shrink-0 mt-0.5" />
           <span>
-            OpsPulse is currently operating in <strong>Private Developer Preview</strong>. Workspaces and dedicated OpenTelemetry ingestion pipelines are provisioned directly by our founding engineering team for participating AWS workloads.
+            OpsPulse is currently in <strong>Private Developer Preview</strong>. Dedicated ingestion pipelines and multi-tenant workspaces are planned deliverables over the next 60–90 days. We aim to onboard up to five design partners as the backend becomes ready.
           </span>
         </div>
 
@@ -76,7 +76,7 @@ export const SignInModal: React.FC<SignInModalProps> = ({
         </div>
 
         <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 text-center text-[11px] text-slate-500 dark:text-slate-400">
-          Enrolled design partners can manage tenant credentials via AWS Secrets Manager.
+          Design partner workspaces will be provisioned directly as backend infrastructure becomes ready.
         </div>
       </div>
     </div>

@@ -28,10 +28,10 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
             </div>
             <div>
               <h3 id="aws-modal-title" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                AWS Cloud Native Architecture Specification
+                Proposed AWS Cloud Architecture Specification
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                OpsPulse Production Observability Engine • Multi-Region Resilient Infrastructure
+                Proposed AWS Backend Architecture • Target Multi-Region Infrastructure
               </p>
             </div>
           </div>
@@ -50,7 +50,7 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-1.5">
               <Layers className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
-              End-to-End Ingestion &amp; Autonomous Healing Pipeline
+              Proposed End-to-End Ingestion &amp; Autonomous Healing Pipeline
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
               <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-3.5 text-center">

@@ -202,7 +202,7 @@ export const App: React.FC = () => {
               className="flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 shadow-sm transition active:scale-95 cursor-pointer"
             >
               <Layers className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
-              <span>AWS Architecture Specs</span>
+              <span>Proposed Architecture Specs</span>
             </button>
 
             <button
@@ -211,7 +211,7 @@ export const App: React.FC = () => {
               className="flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-750 px-4 py-3 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 shadow-sm transition active:scale-95 cursor-pointer"
             >
               <BookOpen className="h-4 w-4 text-indigo-500" />
-              <span>Integration SDK</span>
+              <span>Planned Integration Guide</span>
             </button>
           </div>
 
@@ -478,7 +478,7 @@ export const App: React.FC = () => {
               </li>
               <li>
                 <button onClick={() => setIsAwsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  AWS Architecture Blueprint
+                  Proposed Architecture Specs
                 </button>
               </li>
               <li>
@@ -496,7 +496,7 @@ export const App: React.FC = () => {
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li>
                 <button onClick={() => setIsDocsModalOpen(true)} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  Integration Quickstart (OTel)
+                  Planned OTel Integration
                 </button>
               </li>
               <li>

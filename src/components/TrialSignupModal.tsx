@@ -264,7 +264,7 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
                   <span>Private Beta Assurance</span>
                 </div>
                 <p>
-                  Zero credit card required. We onboard design partners into private evaluation cohorts with dedicated Slack support and AWS architecture guidance.
+                  Zero payment required. We aim to onboard up to five design partners over the next 90 days as the backend becomes ready.
                 </p>
               </div>
 
@@ -296,15 +296,15 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
               Early Access Request Received!
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto leading-relaxed">
-              Thank you! Our engineering team will review your AWS workload parameters (<span className="text-cyan-600 dark:text-cyan-400 font-mono">{region}</span> • <span className="font-semibold text-slate-800 dark:text-slate-200">{workload}</span>) and dispatch your onboarding invite to <span className="font-semibold text-slate-800 dark:text-slate-200">{email}</span>.
+              Your request has been received for <span className="font-semibold text-slate-800 dark:text-slate-200">{email}</span>. We will contact you about pilot availability as the backend becomes ready.
             </p>
 
             <div className="mt-5 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-left text-xs space-y-1.5">
-              <span className="font-bold text-slate-800 dark:text-slate-200">What happens next:</span>
+              <span className="font-bold text-slate-800 dark:text-slate-200">Pilot Cohort Roadmap:</span>
               <ul className="list-disc list-inside text-slate-500 dark:text-slate-400 space-y-1 text-[11px]">
-                <li>Access credentials will be generated for your private tenant endpoint.</li>
-                <li>You will receive an invite to our private developer Slack channel.</li>
-                <li>You will receive the CloudFormation template to deploy the non-invasive telemetry collector.</li>
+                <li>We aim to onboard up to five design partners over the next 90 days.</li>
+                <li>Workload parameters (<span className="text-cyan-600 dark:text-cyan-400 font-mono">{region}</span> • <span className="font-semibold text-slate-800 dark:text-slate-200">{workload}</span>) have been recorded for environment planning.</li>
+                <li>We will reach out directly as backend tenant provisioning becomes available.</li>
               </ul>
             </div>
 

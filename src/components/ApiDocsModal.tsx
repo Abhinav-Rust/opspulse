@@ -72,7 +72,7 @@ Resources:
                 Developer Integration &amp; SDK Quickstart
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Stream telemetry into OpsPulse via OpenTelemetry OTLP or private preview SDK
+                Planned integration architecture for streaming OpenTelemetry OTLP into OpsPulse
               </p>
             </div>
           </div>
@@ -89,9 +89,9 @@ Resources:
         <div className="mt-4 p-3.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 text-xs text-slate-600 dark:text-slate-300 flex items-start gap-2.5">
           <Info className="h-4 w-4 text-cyan-500 shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-bold text-slate-900 dark:text-white">Private Preview Notice:</span>
+            <span className="font-bold text-slate-900 dark:text-white">Planned Integration Architecture:</span>
             <p className="text-[11px] leading-relaxed">
-              The proprietary wrapper <code>@opspulse/agent</code> is distributed via GitHub Packages for enrolled design partners. During the private beta, you can stream standard OTel data immediately using the official <code>@opentelemetry/sdk-node</code> package below.
+              This specification illustrates the planned client-side configuration for design partners. During active pilot onboarding, telemetry will be ingested via standard open-source <code>@opentelemetry/sdk-node</code> pipelines configured with tenant-specific ingestion endpoints.
             </p>
           </div>
         </div>
@@ -118,7 +118,7 @@ Resources:
               <code>npm install @opentelemetry/sdk-node @opentelemetry/auto-instrumentations-node @opentelemetry/exporter-trace-otlp-http</code>
             </pre>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 font-mono">
-              Enrolled partners with GitHub Packages access: <code>npm install --registry=https://npm.pkg.github.com/Abhinav-Rust @opspulse/agent</code>
+              Planned helper package (Roadmap): <code>@opspulse/agent</code> for automatic AWS metadata enrichment.
             </p>
           </div>
 

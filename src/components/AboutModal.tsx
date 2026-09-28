@@ -99,8 +99,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               <Sparkles className="h-3.5 w-3.5 text-cyan-500" />
               <span>Current Development Stage</span>
             </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              OpsPulse is currently in active <strong>Private Developer Preview</strong>. We are a self-funded startup project applying for the <strong>AWS Activate for Startups</strong> program to fund backend implementation, evaluate supported Amazon Bedrock foundation models against enterprise workloads, and onboard our initial pilot cohort of 5 design partners.
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              The public website and interactive simulation are live on AWS Amplify. OpenTelemetry collection, Bedrock prompts and SSM runbooks are locally prototyped. Live Bedrock processing and the multi-tenant backend are planned for the next 60–90 days. We aim to onboard up to five design partners over the next 90 days.
             </p>
           </div>
         </div>
