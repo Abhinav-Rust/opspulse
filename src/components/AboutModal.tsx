@@ -77,7 +77,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                 <span>Operating Location</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Bengaluru &amp; Delhi NCR, India.<br />
+                Chandigarh, India.<br />
                 Multi-region AWS Cloud Infrastructure.
               </p>
             </div>

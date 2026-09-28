@@ -457,7 +457,7 @@ export const App: React.FC = () => {
             </p>
             <div className="mt-3 text-[11px] text-slate-400">
               <p className="font-semibold text-slate-700 dark:text-slate-300">Engineering HQ:</p>
-              <p>Bengaluru &amp; Delhi NCR, India</p>
+              <p>Chandigarh, India</p>
             </div>
           </div>
 
@@ -547,7 +547,7 @@ export const App: React.FC = () => {
         </div>
 
         <div className="mx-auto max-w-7xl pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
-          <p>© 2026 OpsPulse Technologies • Bengaluru &amp; Delhi NCR, India • All rights reserved.</p>
+          <p>© 2026 OpsPulse Technologies • Chandigarh, India • All rights reserved.</p>
           <p className="font-mono">Registered Domain: opspulse.in • Edge CloudFront Ingestion</p>
         </div>
       </footer>
