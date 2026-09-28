@@ -127,7 +127,7 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
                     <td className="p-3 text-slate-600 dark:text-slate-400 font-sans">
                       Causal graph analysis, anomaly classification, and automated remediation generation
                     </td>
-                    <td className="p-3 text-right text-purple-600 dark:text-purple-400 font-bold">&lt;450ms p99 Latency</td>
+                    <td className="p-3 text-right text-purple-600 dark:text-purple-400 font-bold">&lt;450ms (Design Target)</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-sans font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -193,7 +193,7 @@ export const AwsArchitectureModal: React.FC<AwsArchitectureModalProps> = ({
         <div className="mt-6 flex items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-4">
           <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400">
             <Activity className="h-3.5 w-3.5 text-cyan-500" />
-            <span>Multi-Region High Availability: Active</span>
+            <span>Architecture Blueprint: Multi-Region Ready</span>
           </div>
           <button
             onClick={onClose}

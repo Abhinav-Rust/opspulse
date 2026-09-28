@@ -57,7 +57,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         'Unlimited AWS service nodes',
         'Unlimited high-throughput event ingestion',
         'Dedicated VPC Peering & PrivateLink',
-        'Custom fine-tuned Bedrock models',
+        'Custom Bedrock model fine-tuning (Roadmap)',
         'Architected for 99.9% Uptime Target',
         'Designed for SOC 2 Type II alignment',
         'Direct access to founding engineering team',
@@ -79,13 +79,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
     <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-5 sm:p-8 shadow-sm dark:shadow-xl backdrop-blur-sm transition-all">
       <div className="text-center max-w-2xl mx-auto mb-8">
         <span className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-800 px-3 py-1 rounded-full">
-          Transparent SaaS Pricing
+          Planned SaaS Pricing • Private Pilot Phase
         </span>
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-3">
-          Predictable Plans for Modern Cloud Teams
+          Planned Pricing for Modern Cloud Teams
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Start free, evaluate in sandbox, and scale effortlessly on AWS. Zero payment friction.
+          Target pricing for our upcoming production release. Currently onboarding our initial cohort of 5 design partners under private pilot preview.
         </p>
 
         {/* Annual / Monthly Toggle */}

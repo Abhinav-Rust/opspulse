@@ -52,10 +52,10 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
           <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2">
             <div className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white text-xs">
               <User className="h-4 w-4 text-cyan-500" />
-              <span>Founder &amp; Engineering Lead</span>
+              <span>Founder &amp; Systems Architect</span>
             </div>
             <p className="text-xs text-slate-700 dark:text-slate-300">
-              <strong>Abhinav Sharma</strong> — Cloud &amp; systems software engineer specializing in high-concurrency distributed systems, Rust, OpenTelemetry, and AWS cloud architecture.
+              <strong>Abhinav Sharma</strong> — Systems Architect &amp; Founder. Specializes in conceptualizing and designing cloud systems architectures and orchestrating agentic AI engineering workflows for AWS infrastructure.
             </p>
             <div className="pt-1">
               <a
@@ -100,7 +100,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               <span>Current Development Stage</span>
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              OpsPulse is currently in active <strong>Private Developer Preview</strong>. We are a self-funded startup project applying for the <strong>AWS Activate for Startups</strong> program to benchmark autonomous remediation models against enterprise workloads on AWS.
+              OpsPulse is currently in active <strong>Private Developer Preview</strong>. We are a self-funded startup project applying for the <strong>AWS Activate for Startups</strong> program to fund backend implementation, evaluate supported Amazon Bedrock foundation models against enterprise workloads, and onboard our initial pilot cohort of 5 design partners.
             </p>
           </div>
         </div>

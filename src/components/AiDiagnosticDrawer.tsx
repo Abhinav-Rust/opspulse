@@ -158,7 +158,7 @@ export const AiDiagnosticDrawer: React.FC<AiDiagnosticDrawerProps> = ({
               className="flex items-center gap-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-3.5 py-2 text-xs font-bold text-cyan-700 dark:text-cyan-300 transition active:scale-95"
             >
               <Terminal className="h-3.5 w-3.5" />
-              <span>Live CloudShell</span>
+              <span>Simulated Remediation</span>
             </button>
           )}
 

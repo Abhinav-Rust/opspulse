@@ -97,7 +97,7 @@ export const App: React.FC = () => {
       }
     }, 60);
 
-    // Pick top unresolved or critical incident and launch the interactive CloudShell terminal
+    // Pick top unresolved or critical incident and launch the interactive simulated remediation console
     const targetIncident = incidents.find((i) => i.severity === 'critical') || incidents[0];
     if (targetIncident) {
       setTimeout(() => {
@@ -181,7 +181,7 @@ export const App: React.FC = () => {
           </h1>
 
           <p className="mt-3 text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            OpsPulse ingests distributed OpenTelemetry streams, classifies infrastructure anomalies using Amazon Bedrock foundation models in milliseconds, and executes self-healing runbooks before customer outages occur.
+            OpsPulse is an early-stage observability and automated remediation platform architected for AWS. Designed to ingest distributed OpenTelemetry streams, diagnose infrastructure anomalies using Amazon Bedrock foundation models, and automate deterministic AWS Systems Manager (SSM) runbooks to resolve incidents before customer impact.
           </p>
 
           {/* Primary Action Buttons */}
@@ -260,7 +260,7 @@ export const App: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white px-3 py-0.5 text-[11px] font-bold shadow-sm transition active:scale-95 cursor-pointer ml-1"
                 >
                   <Play className="h-3 w-3 fill-current" />
-                  <span>Run CloudShell Demo</span>
+                  <span>Run Remediation Demo</span>
                 </button>
               </div>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
@@ -387,7 +387,7 @@ export const App: React.FC = () => {
         onOpenTerminal={handleOpenTerminalForIncident}
       />
 
-      {/* Interactive AWS CloudShell Autonomous Terminal Modal */}
+      {/* Interactive Simulated Remediation Console Modal */}
       <AutonomousTerminalModal
         isOpen={isTerminalModalOpen}
         incident={terminalIncident}
@@ -483,7 +483,7 @@ export const App: React.FC = () => {
               </li>
               <li>
                 <button onClick={() => handleScrollToSection('finops')} className="hover:text-cyan-600 dark:hover:text-cyan-400 transition">
-                  FinOps Benchmarks
+                  FinOps Cost Projections
                 </button>
               </li>
             </ul>

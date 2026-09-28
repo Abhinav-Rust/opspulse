@@ -43,7 +43,7 @@ export const AutonomousTerminalModal: React.FC<AutonomousTerminalModalProps> = (
     setIsRunning(true);
     const steps = [
       `[DIAGNOSTIC] Querying Amazon CloudWatch metric alarms for ${incident.service}...`,
-      `[INFERENCE] Amazon Bedrock (Claude 3.5 Sonnet) analyzing causal log stream...`,
+      `[INFERENCE] Amazon Bedrock foundation model analyzing causal log stream...`,
       `[ROOT-CAUSE] Root cause confirmed: ${incident.aiRootCause}`,
       `[SSM-DISPATCH] Invoking AWS Systems Manager Run Command: ${incident.awsCliCommand}`,
       `[CONTAINER-ORCH] Triggering healthy instance drain & graceful worker recycle...`,
@@ -89,7 +89,7 @@ export const AutonomousTerminalModal: React.FC<AutonomousTerminalModalProps> = (
             </div>
             <Terminal className="h-4 w-4 text-cyan-400 shrink-0" />
             <h3 id="terminal-modal-title" className="text-xs sm:text-sm font-mono font-semibold text-slate-200 truncate">
-              OpsPulse CloudShell Runbook
+              OpsPulse Simulated Remediation Console
             </h3>
           </div>
           <button

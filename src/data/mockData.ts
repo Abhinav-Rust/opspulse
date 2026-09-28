@@ -118,7 +118,7 @@ export const INITIAL_INCIDENTS: IncidentAlert[] = [
     impact: 'p99 latency briefly reached 142ms across ap-south-1b',
     aiRootCause: 'Concurrent token burst in vector search query pipeline causing ephemeral worker backlog.',
     suggestedAction: 'Scale Bedrock provisioned throughput concurrency limit by 20% and invalidate stale embedding cache.',
-    awsCliCommand: 'aws bedrock-runtime invoke-model --model-id anthropic.claude-3-5-sonnet --region ap-south-1 --cli-read-timeout 10',
+    awsCliCommand: 'aws bedrock-runtime invoke-model --model-id amazon.titan-text-express-v1 --region ap-south-1 --cli-read-timeout 10',
     resolved: false,
   },
   {
