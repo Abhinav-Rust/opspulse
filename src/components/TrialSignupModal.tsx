@@ -105,12 +105,12 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
 
         {planName === 'Enterprise Cloud' ? (
           <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400">
+            <div className="flex items-start sm:items-center gap-2.5 mb-2 pr-9">
+              <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5 sm:mt-0">
                 <Shield className="h-5 w-5" />
               </div>
-              <div>
-                <h3 id="trial-modal-title" className="text-lg font-bold text-slate-900 dark:text-white">
+              <div className="min-w-0 flex-1">
+                <h3 id="trial-modal-title" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
                   Enterprise Cloud Architecture
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -162,12 +162,12 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
           </div>
         ) : !isSubmitted ? (
           <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-800 text-cyan-600 dark:text-cyan-400">
+            <div className="flex items-start sm:items-center gap-2.5 mb-2 pr-9">
+              <div className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-800 text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5 sm:mt-0">
                 <Sparkles className="h-5 w-5" />
               </div>
-              <div>
-                <h3 id="trial-modal-title" className="text-lg font-bold text-slate-900 dark:text-white">
+              <div className="min-w-0 flex-1">
+                <h3 id="trial-modal-title" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
                   Request Early Access — Private Beta
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">

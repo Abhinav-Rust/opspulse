@@ -162,7 +162,10 @@ export const App: React.FC = () => {
       <Header
         onOpenAwsModal={() => setIsAwsModalOpen(true)}
         onOpenDocsModal={() => setIsDocsModalOpen(true)}
-        onOpenTrialModal={() => setIsTrialModalOpen(true)}
+        onOpenTrialModal={() => {
+          setTrialPlan('Startup Pro');
+          setIsTrialModalOpen(true);
+        }}
         onOpenSignInModal={() => setIsSignInModalOpen(true)}
         onScrollToSection={handleScrollToSection}
         theme={theme}
@@ -418,6 +421,7 @@ export const App: React.FC = () => {
         onClose={() => setIsSignInModalOpen(false)}
         onOpenTrial={() => {
           setIsSignInModalOpen(false);
+          setTrialPlan('Startup Pro');
           setIsTrialModalOpen(true);
         }}
       />
@@ -425,7 +429,10 @@ export const App: React.FC = () => {
       {/* Trial Signup Modal */}
       <TrialSignupModal
         isOpen={isTrialModalOpen}
-        onClose={() => setIsTrialModalOpen(false)}
+        onClose={() => {
+          setIsTrialModalOpen(false);
+          setTrialPlan('Startup Pro');
+        }}
         planName={trialPlan}
         onOpenDocs={() => setIsAwsModalOpen(true)}
         onLaunchInteractiveDemo={handleLaunchInteractiveDemo}

@@ -32,12 +32,12 @@ export const SignInModal: React.FC<SignInModalProps> = ({
           <X className="h-5 w-5" />
         </button>
 
-        <div className="flex items-center gap-3 mb-5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0">
+        <div className="flex items-start sm:items-center gap-3 mb-5 pr-9">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 shadow-md shadow-cyan-500/20 shrink-0 mt-0.5 sm:mt-0">
             <Activity className="h-5 w-5 text-white" />
           </div>
-          <div>
-            <h3 id="signin-modal-title" className="text-lg font-bold text-slate-900 dark:text-white">
+          <div className="min-w-0 flex-1">
+            <h3 id="signin-modal-title" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug">
               Private Developer Preview
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
