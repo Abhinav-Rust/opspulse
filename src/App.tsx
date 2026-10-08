@@ -43,6 +43,7 @@ export const App: React.FC = () => {
   const [isTerminalModalOpen, setIsTerminalModalOpen] = useState<boolean>(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState<boolean>(false);
   const [isTrialModalOpen, setIsTrialModalOpen] = useState<boolean>(false);
+  const [trialPlan, setTrialPlan] = useState<string>('Startup Pro');
   const [isAboutModalOpen, setIsAboutModalOpen] = useState<boolean>(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState<boolean>(false);
@@ -219,7 +220,7 @@ export const App: React.FC = () => {
           <div className="pt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-500 dark:text-slate-400 font-medium">
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Amazon Bedrock Multi-Model Diagnostics</span>
+              <span>Architected for Bedrock Multi-Model Diagnostics</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -227,11 +228,11 @@ export const App: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Zero-Trust IAM Role Isolation</span>
+              <span>Designed for Zero-Trust IAM Role Isolation</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-              <span>Global Sub-20ms CloudFront Edge</span>
+              <span>Amazon CloudFront Global Edge Delivery</span>
             </div>
           </div>
         </div>
@@ -375,6 +376,10 @@ export const App: React.FC = () => {
           <PricingSection
             onOpenDocs={() => setIsDocsModalOpen(true)}
             onLaunchInteractiveDemo={handleLaunchInteractiveDemo}
+            onOpenTrial={(plan) => {
+              setTrialPlan(plan);
+              setIsTrialModalOpen(true);
+            }}
           />
         </section>
       </main>
@@ -421,7 +426,7 @@ export const App: React.FC = () => {
       <TrialSignupModal
         isOpen={isTrialModalOpen}
         onClose={() => setIsTrialModalOpen(false)}
-        planName="Startup Pro"
+        planName={trialPlan}
         onOpenDocs={() => setIsAwsModalOpen(true)}
         onLaunchInteractiveDemo={handleLaunchInteractiveDemo}
       />

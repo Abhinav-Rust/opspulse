@@ -14,9 +14,9 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) =
       role="dialog"
       aria-modal="true"
       aria-labelledby="privacy-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-2xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[85vh] text-slate-900 dark:text-slate-100">
+      <div className="relative w-full max-w-2xl my-auto max-h-[88dvh] sm:max-h-[90vh] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl overflow-y-auto text-slate-900 dark:text-slate-100">
         <button
           onClick={onClose}
           aria-label="Close modal"
@@ -62,9 +62,9 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) =
           </section>
 
           <section className="space-y-1.5">
-            <h4 className="font-bold text-slate-900 dark:text-white">4. Cloud Infrastructure &amp; Security</h4>
+            <h4 className="font-bold text-slate-900 dark:text-white">4. Cloud Infrastructure &amp; Security Architecture</h4>
             <p>
-              All OpsPulse infrastructure is hosted on Amazon Web Services (AWS) using TLS 1.3 encryption in transit and AES-256 encryption at rest. Service access is governed by IAM zero-trust policies.
+              The public web application is hosted on AWS Amplify and Amazon CloudFront with TLS encryption in transit. Our planned backend telemetry processing architecture is designed with Amazon KMS encryption at rest (AES-256) and AWS IAM least-privilege role isolation for cross-account diagnostic workloads.
             </p>
           </section>
 

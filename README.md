@@ -1,42 +1,53 @@
-# OpsPulse — AI Cloud Observability & Incident Intelligence Platform
+# OpsPulse — AI Cloud Observability & Autonomous SRE Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Cloud: AWS Native](https://img.shields.io/badge/Cloud-AWS%20Native-orange.svg)](https://aws.amazon.com/)
-[![Region: Multi-Region](https://img.shields.io/badge/Region-Multi--Region-cyan.svg)](https://www.opspulse.in)
+[![Hosting: AWS Amplify](https://img.shields.io/badge/Hosting-AWS%20Amplify-cyan.svg)](https://www.opspulse.in)
+[![Status: Prototype / In Development](https://img.shields.io/badge/Status-Prototype%20%2F%20In%20Development-emerald.svg)](https://www.opspulse.in)
 
-**OpsPulse** (`opspulse.in`) is a next-generation AI-driven cloud infrastructure observability and autonomous remediation platform. OpsPulse ingests high-throughput distributed telemetry metrics, predicts service anomalies via foundation models on Amazon Bedrock, and executes automated infrastructure healing on AWS compute clusters.
-
----
-
-## 🚀 Key Architectural Capabilities
-
-- **Real-Time Distributed Telemetry**: Sub-second latency tracking across EC2 auto-scaling groups, container workloads, and edge proxies.
-- **Amazon Bedrock Anomaly Intelligence**: Foundation model reasoning applied to raw CloudWatch log streams and metric anomalies to identify root causes in real time.
-- **Ultra-Low Latency State Store**: Amazon DynamoDB powered hot-cache for instant metric lookups and sub-millisecond anomaly thresholds.
-- **Long-Term Metric Lake**: Amazon S3 Glacier integrated telemetry archive for cross-quarter capacity forecasting.
-- **Autonomous Remediation**: One-click and automated self-healing workflows with reproducible AWS CLI remediation commands.
+**OpsPulse Technologies** is an early-stage cloud software initiative founded in India in 2026 by Abhinav Sharma. We are developing an autonomous cloud observability and incident remediation platform architected for Amazon Web Services (AWS).
 
 ---
 
-## 🏗 AWS Infrastructure Blueprint
+## 🌐 Current State & Live Simulation
 
-OpsPulse is architected natively on Amazon Web Services:
-
-| Service Component | Role in OpsPulse Architecture |
-| :--- | :--- |
-| **Amazon EC2 & ASG** | High-throughput telemetry ingestion daemons & worker nodes |
-| **Amazon Bedrock** | Multi-modal anomaly classification and root-cause diagnosis |
-| **Amazon DynamoDB** | High-concurrency, low-latency telemetry time-series state |
-| **Amazon S3 & CloudWatch** | Persistent metric lake and compliance event archiving |
-| **Amazon CloudFront & Route 53** | Global edge acceleration and low-latency DNS routing (`opspulse.in`) |
+- **Live Web Application**: Hosted publicly on **AWS Amplify** at [https://www.opspulse.in](https://www.opspulse.in) with Amazon CloudFront global edge delivery and automated TLS/SSL certificate management.
+- **Interactive Remediation Sandbox**: A client-side demonstration illustrating automated anomaly classification, causal graph root-cause analysis, and human-in-the-loop AWS Systems Manager remediation workflows using sample telemetry data.
+- **Development Roadmap (60–90 Days)**: Live Amazon Bedrock foundation model integration, multi-tenant OpenTelemetry (OTLP) ingestion daemons, and automated AWS Systems Manager runbook execution are planned roadmap deliverables funded by AWS Activate credits.
 
 ---
 
-## 🛠 Tech Stack
+## 🚀 Architected Capabilities
 
-- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Lucide Icons
-- **State & Real-time**: Reactive telemetry polling & simulated live socket stream
-- **Hosting & CI/CD**: AWS Amplify Hosting with automated ACM SSL/TLS certificate management
+- **Distributed Telemetry Ingestion (Planned)**: High-throughput OpenTelemetry collector daemons architected for multi-AZ EC2 auto-scaling groups to ingest metrics, logs, and distributed traces.
+- **Bedrock Anomaly Intelligence (Planned)**: Zero-shot classification and generative root-cause analysis powered by Amazon Bedrock foundation models evaluated for cost and diagnostic accuracy.
+- **Low-Latency State Store (Planned)**: Amazon DynamoDB on-demand tables for active incident state machines and fast operational lookups.
+- **Telemetry Lakehouse (Planned)**: Amazon S3 Parquet archive integrated with Amazon Athena for long-term metric capacity analysis and trend forecasting.
+- **Autonomous Runbook Healing (Planned)**: Deterministic infrastructure remediation via AWS Systems Manager (SSM Run Command) with human-in-the-loop validation gates.
+- **FinOps Resource Optimization (Planned)**: Detection and scheduled reclamation of idle EC2 compute, unattached EBS volumes, and orphaned Elastic IPs.
+
+---
+
+## 🏗️ Proposed AWS Infrastructure Blueprint
+
+| Service Component | Role in OpsPulse Architecture | Implementation State |
+| :--- | :--- | :---: |
+| **AWS Amplify & Amazon CloudFront** | Global edge delivery, CDN caching, and HTTPS hosting | **Live / Deployed** |
+| **Amazon Bedrock** | Foundation model diagnostic reasoning & root-cause analysis | **Planned Backend** |
+| **Amazon EC2 & ASG** | High-throughput OTel ingestion daemons & stream workers | **Planned Backend** |
+| **Amazon DynamoDB** | Ultra-low latency incident state machine store | **Planned Backend** |
+| **Amazon S3 & Athena** | Persistent telemetry lakehouse and audit log archiving | **Planned Backend** |
+| **AWS Systems Manager (SSM)** | Deterministic runbook execution and automated remediation | **Planned Backend** |
+| **AWS IAM** | Zero-trust least-privilege role isolation for diagnostic workers | **Planned Backend** |
+
+---
+
+## 🛠️ Frontend Tech Stack
+
+- **Framework**: React 19, TypeScript, Vite
+- **Styling**: Tailwind CSS, Lucide Icons
+- **Hosting & CI/CD**: AWS Amplify Hosting with Git-driven continuous deployment
+- **Domain & DNS**: Route 53 DNS routing for `opspulse.in` and `www.opspulse.in`
 
 ---
 
@@ -50,10 +61,13 @@ cd opspulse
 # Install dependencies
 npm install
 
-# Start development server
+# Start local Vite development server
 npm run dev
 
-# Build for production
+# Run linter
+npm run lint
+
+# Build production bundle
 npm run build
 ```
 
@@ -61,6 +75,8 @@ npm run build
 
 ## 📄 Organization & Inquiries
 
-- **Domain**: [opspulse.in](https://www.opspulse.in)
-- **Organization**: OpsPulse Systems Inc.
-- **Contact**: `contact@opspulse.in`
+- **Domain**: [https://www.opspulse.in](https://www.opspulse.in)
+- **Organization**: OpsPulse Technologies (Bootstrapped, India)
+- **Founder & Systems Architect**: Abhinav Sharma ([GitHub](https://github.com/Abhinav-Rust))
+- **Founder Direct Email**: `founder@opspulse.in`
+- **General Inquiries**: `contact@opspulse.in`

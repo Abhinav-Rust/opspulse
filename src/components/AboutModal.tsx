@@ -14,9 +14,9 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="about-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-2xl rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[85vh] text-slate-900 dark:text-slate-100">
+      <div className="relative w-full max-w-2xl my-auto max-h-[88dvh] sm:max-h-[90vh] rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xl overflow-y-auto text-slate-900 dark:text-slate-100">
         <button
           onClick={onClose}
           aria-label="Close modal"
@@ -100,7 +100,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
               <span>Current Development Stage</span>
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              The public website and interactive simulation are live on AWS Amplify. OpenTelemetry collection, Bedrock prompts and SSM runbooks are locally prototyped. Live Bedrock processing and the multi-tenant backend are planned for the next 60–90 days. We aim to onboard up to five design partners over the next 90 days.
+              The public website and interactive frontend simulation are live on AWS Amplify at <a href="https://www.opspulse.in" className="text-cyan-600 dark:text-cyan-400 underline font-mono">opspulse.in</a>. The demo illustrates intended investigation and remediation workflows using sample data. Live Amazon Bedrock processing and the multi-tenant backend are planned for the next 60–90 days. We aim to onboard up to five design partners over the next 90 days.
             </p>
           </div>
         </div>

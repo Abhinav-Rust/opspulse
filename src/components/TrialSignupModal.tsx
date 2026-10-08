@@ -90,9 +90,9 @@ export const TrialSignupModal: React.FC<TrialSignupModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="trial-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-6 sm:p-7 text-slate-900 dark:text-slate-100 transition-all">
+      <div className="relative w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl p-5 sm:p-7 text-slate-900 dark:text-slate-100 transition-all max-h-[88dvh] sm:max-h-[90vh] overflow-y-auto my-auto">
         {/* Close Button */}
         <button
           type="button"

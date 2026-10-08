@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Check, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
-import { TrialSignupModal } from './TrialSignupModal';
-
 interface PricingSectionProps {
   onOpenDocs: () => void;
   onLaunchInteractiveDemo: () => void;
+  onOpenTrial: (planName: string) => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({
   onOpenDocs,
   onLaunchInteractiveDemo,
+  onOpenTrial,
 }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
-  const [modalPlan, setModalPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -69,9 +68,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
 
   const handlePlanClick = (planName: string) => {
     if (planName === 'Developer Free') {
-      onOpenDocs();
+      onLaunchInteractiveDemo();
     } else {
-      setModalPlan(planName);
+      onOpenTrial(planName);
     }
   };
 
@@ -191,31 +190,28 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
               </span>
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-              Architecting for AWS Marketplace integration. Draw down AWS commitments seamlessly as OpsPulse moves to general availability.
+              Architecting for AWS Marketplace integration. Review our{' '}
+              <button
+                type="button"
+                onClick={onOpenDocs}
+                className="text-cyan-600 dark:text-cyan-400 underline hover:text-cyan-500 font-medium"
+              >
+                architecture specification
+              </button>{' '}
+              as OpsPulse moves to general availability.
             </p>
           </div>
         </div>
 
         <button
           type="button"
-          onClick={() => setModalPlan('Startup Pro')}
+          onClick={() => onOpenTrial('Startup Pro')}
           className="whitespace-nowrap px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition flex items-center gap-1.5 shadow-sm text-xs"
         >
           <Zap className="h-3.5 w-3.5 text-amber-500" />
           <span>Request Private Beta</span>
         </button>
       </div>
-
-      {/* Active Modal */}
-      {modalPlan && (
-        <TrialSignupModal
-          isOpen={!!modalPlan}
-          onClose={() => setModalPlan(null)}
-          planName={modalPlan}
-          onOpenDocs={onOpenDocs}
-          onLaunchInteractiveDemo={onLaunchInteractiveDemo}
-        />
-      )}
     </div>
   );
 };
